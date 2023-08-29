@@ -8,7 +8,7 @@ router.get('/hc',(req,res) => {  //healthcheck
 })
 
 // router.get('/videogames',getVideogames)
-
+router.get('/search', getAvailable)
 
 
 
