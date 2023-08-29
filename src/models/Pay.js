@@ -53,6 +53,6 @@ module.exports = (sequelize) => {
         },
       },
     },
-    { timesStamp: false },
+    { timestamps: false },
   );
 };
