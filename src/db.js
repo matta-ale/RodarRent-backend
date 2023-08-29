@@ -43,7 +43,8 @@ sequelize.models = Object.fromEntries(capsEntries);
 // Para relacionarlos hacemos un destructuring
 
 // ACÁ ABAJO IMPORTAR LOS MODELS
-const { Customers, Booking, Location } = sequelize.models;
+const { Customers, Booking, Location, Pay } = sequelize.models;
+
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
