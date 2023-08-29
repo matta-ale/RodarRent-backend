@@ -23,7 +23,7 @@ const modelDefiners = [];
 fs.readdirSync(path.join(__dirname, '/models'))
   .filter(
     (file) =>
-      file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.js'
+      file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.js',
   )
   .forEach((file) => {
     modelDefiners.push(require(path.join(__dirname, '/models', file)));
@@ -43,7 +43,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 // Para relacionarlos hacemos un destructuring
 
 // ACÁ ABAJO IMPORTAR LOS MODELS
-const { Customers, Pay } = sequelize.models;
+const { Customers, Booking, Location, Pay } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
