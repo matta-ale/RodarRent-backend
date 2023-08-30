@@ -2,8 +2,8 @@ const { Router } = require('express');
 
 const postPayValidate = require('../middlewares/postPayValidate');
 const createCustomer = require('../controllers/createCustomer');
-const createVehicle = require('../controllers/createVehicle');
-const postVehicleValidate = require('../middlewares/postVehicleValidate');
+const createVehicles = require('../controllers/createVehicles');
+const postVehiclesValidate = require('../middlewares/postVehiclesValidate');
 const getAllCustomers = require('../controllers/getAllCustomers');
 const postBookingValidate = require('../middlewares/postBookingValidate');
 const createBooking = require('../controllers/createBooking')
@@ -24,11 +24,13 @@ router.get('/hc', (req, res) => {
   res.status(200).send('Server up');
 });
 
+
+router.post('/vehicles', postVehiclesValidate, createVehicles)
+router.post('/customers', createCustomer);
 router.post('/customers',createCustomerValidation, createCustomer);
 router.get('/customers', getAllCustomers);
 router.get('/customers/:id',getCustomerByIdValidation, getCustomerById);
 router.delete('/customers/:id',deleteCustomerByIdValidation, deleteCustomerById);
-router.post('/vehicles', postVehicleValidate, createVehicle)
 router.post('/payments', postPayValidate, createPay);
 router.get('/payments', getAllPayments);
 router.get('/payments/:id', getPaymentById);
