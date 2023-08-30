@@ -1,8 +1,7 @@
 /* eslint-disable object-curly-newline */
 const { Pay } = require('../db');
 
-async function handleCreatePay({ amount, date, method, status }) {
-  console.log(amount);
+async function createPayHandler({ amount, date, method, status }) {
   const payment = await Pay.create({
     amount,
     date,
@@ -13,5 +12,5 @@ async function handleCreatePay({ amount, date, method, status }) {
 }
 
 module.exports = {
-  handleCreatePay,
+  createPayHandler,
 };
