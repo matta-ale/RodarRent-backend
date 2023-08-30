@@ -13,19 +13,6 @@ const createCustomerHandler = async (data) => {
     email,
   } = data;
   
-  if (
-    !name ||
-    !lastName ||
-    !birthDate ||
-    !address ||
-    !city ||
-    !country ||
-    !zipCode ||
-    !phoneNumber ||
-    !email
-  ) {
-    throw new Error('Please complete all the data');
-  } else {
     try {
       const [customer, created] = await Customer.findOrCreate({
         where: { email },
@@ -55,7 +42,6 @@ const createCustomerHandler = async (data) => {
     } catch (error) {
       throw error;
     }
-  }
 };
 
 module.exports = createCustomerHandler;
