@@ -1,15 +1,13 @@
 const { Router } = require('express');
+const { createPay } = require('../controllers/createPay');
+
 const router = Router();
-// const getVideogames = require('../controllers/getVideogames')
 
+router.get('/hc', (req, res) => {
+  // healthcheck
+  res.status(200).send('Server up');
+});
 
-router.get('/hc',(req,res) => {  //healthcheck
-    res.status(200).send('Server up')
-})
-
-// router.get('/videogames',getVideogames)
-
-
-
+router.post('/payments', createPay);
 
 module.exports = router;
