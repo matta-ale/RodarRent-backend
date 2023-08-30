@@ -38,7 +38,7 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
 
-      postalCode: {
+      zipCode: {
         type: DataTypes.STRING,
         allowNull: false, //podrá ser true?
       },
