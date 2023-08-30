@@ -1,6 +1,6 @@
 const { Booking } = require('../db');
 
-async function getAllBookingsHandler() {
+const getAllBookingsHandler = async() => {
   const bookings = await Booking.findAll();
   return bookings;
 }

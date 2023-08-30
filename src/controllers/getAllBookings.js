@@ -1,5 +1,5 @@
 
-const getAllBookingsHandler = require('../handlers/getAllBookingsHandler')
+const { getAllBookingsHandler } = require('../handlers/getAllBookingsHandler')
 
 const getAllBookings = async (req, res) => {
   try {
@@ -9,7 +9,7 @@ const getAllBookings = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
-//kjlkjlkj
+
 module.exports = {
     getAllBookings,
 }
