@@ -28,6 +28,10 @@ module.exports = (sequelize) => {
         type: DataTypes.UUID,
         allowNull: false,
       },
+      stateBooking: {
+        type: DataTypes.ENUM('pending', 'inProcess', 'completed', 'canceled'),
+        allowNull: false,
+      }
     },
     {
       timestamps: false,
