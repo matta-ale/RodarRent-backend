@@ -8,6 +8,7 @@ const getAllCustomers = require('../controllers/getAllCustomers');
 const { createPay } = require('../controllers/createPay');
 const { getAllPayments } = require('../controllers/getAllPayments');
 const { getPaymentById } = require('../controllers/getPaymentById');
+const {getAllBookings} = require('../controllers/getAllBookings');
 
 const router = Router();
 
@@ -23,6 +24,7 @@ router.get('/customers', getAllCustomers);
 router.post('/payments', postPayValidate, createPay);
 router.get('/payments', getAllPayments);
 router.get('/payments/:id', getPaymentById);
+router.get('/bookings', getAllBookings);
 
 
 module.exports = router;
