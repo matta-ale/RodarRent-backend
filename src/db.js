@@ -1,8 +1,16 @@
-//acá vinculo la instancia de sequelize con la BBDD
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable import/no-dynamic-require */
+/* eslint-disable global-require */
+/* eslint-disable prefer-const */
+/* eslint-disable no-unused-vars */
+/* eslint-disable max-len */
+/* eslint-disable object-curly-newline */
+// acá vinculo la instancia de sequelize con la BBDD
 require('dotenv').config();
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
+
 const { DB_URL, DB_SSL_ENABLED, DB_SSL_REJECT_UNAUTHORIZED } = process.env;
 
 const sequelize = new Sequelize(DB_URL, {
@@ -23,7 +31,7 @@ const modelDefiners = [];
 fs.readdirSync(path.join(__dirname, '/models'))
   .filter(
     (file) =>
-      file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.js'
+      file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.js',
   )
   .forEach((file) => {
     modelDefiners.push(require(path.join(__dirname, '/models', file)));
@@ -43,12 +51,14 @@ sequelize.models = Object.fromEntries(capsEntries);
 // Para relacionarlos hacemos un destructuring
 
 // ACÁ ABAJO IMPORTAR LOS MODELS
-const { Customers } = sequelize.models;
+const { Customers, Booking, Location, Pay } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 //    Videogame.belongsToMany(Genre, {through: "VideogameGenre"})
 //    Genre.belongsToMany(Videogame, {through: "VideogameGenre"})
+Pay.hasOne(Booking);
+Booking.belongsTo(Pay);
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

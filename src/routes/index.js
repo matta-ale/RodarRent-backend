@@ -1,6 +1,8 @@
 const { Router } = require('express');
+
 const createCustomer = require('../controllers/createCustomer');
 const getAllCustomers = require('../controllers/getAllCustomers');
+const { createPay } = require('../controllers/createPay');
 const router = Router();
 
 router.get('/hc',(req,res) => {  //healthcheck
@@ -9,8 +11,6 @@ router.get('/hc',(req,res) => {  //healthcheck
 
 router.post('/customers',createCustomer)
 router.get('/customers',getAllCustomers)
-
-
-
+router.post('/payments', createPay);
 
 module.exports = router;

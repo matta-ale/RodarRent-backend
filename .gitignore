@@ -1,2 +1,6 @@
 node_modules
 .env
+.eslintrc.js
+.vscode
+RodarRentServer.session.sql
+>>>>>>>>> Temporary merge branch 2

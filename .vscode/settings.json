@@ -1,0 +1,16 @@
+{
+    "sqltools.connections": [
+        {
+            "pgOptions": {
+                "ssl": {
+                    "rejectUnauthorized": true
+                }
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "driver": "PostgreSQL",
+            "name": "RodarRentServer",
+            "connectString": "postgres://rodarrent_user:nXdr70cyVGCyyyAD7EE12CJ9j2Dt8UfJ@dpg-cjmjtuvjbvhs73cmesn0-a.oregon-postgres.render.com/rodarrent"
+        }
+    ]
+}
