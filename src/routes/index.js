@@ -5,10 +5,12 @@ const createCustomer = require('../controllers/createCustomer');
 const createVehicle = require('../controllers/createVehicle');
 const postVehicleValidate = require('../middlewares/postVehicleValidate');
 const getAllCustomers = require('../controllers/getAllCustomers');
+const postBookingValidate = require('../middlewares/postBookingValidate');
+const createBooking = require('../controllers/createBooking')
 const { createPay } = require('../controllers/createPay');
 const { getAllPayments } = require('../controllers/getAllPayments');
 const { getPaymentById } = require('../controllers/getPaymentById');
-const {getAllBookings} = require('../controllers/getAllBookings');
+const { getAllBookings } = require('../controllers/getAllBookings');
 
 const router = Router();
 
@@ -25,6 +27,7 @@ router.post('/payments', postPayValidate, createPay);
 router.get('/payments', getAllPayments);
 router.get('/payments/:id', getPaymentById);
 router.get('/bookings', getAllBookings);
+router.post('/bookings', postBookingValidate, createBooking);
 
 
 module.exports = router;
