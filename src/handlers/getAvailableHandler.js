@@ -5,16 +5,16 @@ const { Op } = require('sequelize');
 
 const getAvailableHandler = async (query) => {
     try {
-        const { limit, offset, startDate, endDate } = query // filters & order should be added here too
+        const { limit, offset, startDate, finishDate } = query // filters & order should be added here too
         limit = Number(limit)
         offset = Number(offset)   
         
         const busy = await Booking.findAll({
             where: {
                 startDate: {
-                    [Op.lte]: new Date(endDate)
+                    [Op.lte]: new Date(finishDate)
                 },
-                endDate: {
+                finishDate: {
                     [Op.gte]: new Date(startDate)
                 }
             },
@@ -28,11 +28,18 @@ const getAvailableHandler = async (query) => {
                     [Op.notIn]: busyIds
                 }
             },
-            attributes: ['domain', 'brand', 'model', 'type', 'passengers', 'transmission', 'fuel', 'image'],
+            attributes: ['brand', 'model', 'type', 'passengers', 'transmission', 'fuel', 'image'],
+            distinct: true, // vamos a ver si esto efectivamente filtra
         })
 
-        return available
+        const response = {
+            limit,
+            offset,
+            count: available.count,
+            results: available.rows
+        } 
 
+        return response
 
     } catch (error) {
         throw error
