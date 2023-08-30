@@ -48,5 +48,7 @@ module.exports = (sequelize) => {
     image: {
       type: DataTypes.STRING, // isURL
     },
-  });
+  },
+  { timestamps: false }
+  );
 };
