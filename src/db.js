@@ -1,3 +1,4 @@
+/* eslint-disable object-curly-newline */
 //acá vinculo la instancia de sequelize con la BBDD
 require('dotenv').config();
 const { Sequelize } = require('sequelize');
@@ -49,6 +50,8 @@ const { Customers, Booking, Location, Pay } = sequelize.models;
 // Product.hasMany(Reviews);
 //    Videogame.belongsToMany(Genre, {through: "VideogameGenre"})
 //    Genre.belongsToMany(Videogame, {through: "VideogameGenre"})
+// Pay.hasOne(Booking);
+// Booking.belongsTo(Pay);
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
