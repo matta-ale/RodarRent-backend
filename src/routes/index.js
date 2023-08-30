@@ -1,6 +1,6 @@
 const { Router } = require('express');
 
-const postValidate = require('../middlewares/postValidate');
+const postPayValidate = require('../middlewares/postPayValidate');
 const createCustomer = require('../controllers/createCustomer');
 const getAllCustomers = require('../controllers/getAllCustomers');
 const { createPay } = require('../controllers/createPay');
@@ -16,7 +16,7 @@ router.get('/hc', (req, res) => {
 
 router.post('/customers', createCustomer);
 router.get('/customers', getAllCustomers);
-router.post('/payments', postValidate, createPay);
+router.post('/payments', postPayValidate, createPay);
 router.get('/payments', getAllPayments);
 router.get('/payments/:id', getPaymentById);
 

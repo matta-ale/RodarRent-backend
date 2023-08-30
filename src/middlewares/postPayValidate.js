@@ -1,6 +1,6 @@
 /* eslint-disable object-curly-newline */
 /* eslint-disable consistent-return */
-const postValidate = (req, res, next) => {
+const postPayValidate = (req, res, next) => {
   const { amount, date, method, status } = req.body;
 
   if (!amount) return res.status(404).json({ error: 'Missing amount' });
@@ -11,4 +11,4 @@ const postValidate = (req, res, next) => {
   next();
 };
 
-module.exports = postValidate;
+module.exports = postPayValidate;
