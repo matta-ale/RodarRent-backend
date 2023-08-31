@@ -1,4 +1,4 @@
-const getAllVehiclesHandler = require("../handlers/getAllVehiclesHandler");
+const getAllVehiclesHandler = require("../../handlers/Vehicles/getAllVehiclesHandler");
 
 
 const getAllVehicles = (req, res) => {
@@ -6,7 +6,7 @@ const getAllVehicles = (req, res) => {
         const allVehicles = getAllVehiclesHandler()
         res.status(200).json(allVehicles)
     } catch (error) {
-        res.status(500).json({ error: error.message })
+        res.status(error.statusCode).json({ error: error.message })
     }
 }
 

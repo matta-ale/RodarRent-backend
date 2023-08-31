@@ -1,4 +1,4 @@
-const { Vehicle } = require('../db');
+const { Vehicle } = require('../../db');
 
 const createVehiclesHandler = async (data) => {
     
