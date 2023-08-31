@@ -19,6 +19,7 @@ const deleteCustomerByIdValidation = require('../middlewares/deleteCustomerByIdV
 const { getPaymentById } = require('../controllers/getPaymentById');
 const { getAllBookings } = require('../controllers/getAllBookings');
 const { getAllLocations } = require('../controllers/getAllLocations');
+const { createLocation } = require('../controllers/createLocation');
 
 const router = Router();
 
@@ -41,6 +42,7 @@ router.get('/payments/:id', getPaymentById);
 router.get('/bookings', getAllBookings);
 router.post('/bookings', postBookingValidate, createBooking);
 router.get('/locations', getAllLocations);
+router.post('/locations', createLocation);
 
 
 module.exports = router;
