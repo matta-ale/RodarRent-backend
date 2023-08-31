@@ -22,6 +22,7 @@ const getVehicleByDomain = require('../controllers/Vehicles/getVehicleByDomain')
 const getAllVehicles = require('../controllers/vehicles/getAllVehicles');
 const { getAllLocations } = require('../controllers/getAllLocations');
 const { createLocation } = require('../controllers/createLocation');
+const { getLocationById } = require('../controllers/getLocationById');
 
 const router = Router();
 
@@ -46,6 +47,7 @@ router.get('/bookings', getAllBookings);
 router.post('/bookings', postBookingValidate, createBooking);
 router.get('/locations', getAllLocations);
 router.post('/locations', createLocation);
+router.get('/locations/:id', getLocationById);
 
 
 module.exports = router;
