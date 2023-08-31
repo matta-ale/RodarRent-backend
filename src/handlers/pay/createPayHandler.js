@@ -1,5 +1,5 @@
 /* eslint-disable object-curly-newline */
-const { Pay } = require('../db');
+const { Pay } = require('../../db');
 
 async function createPayHandler({ amount, date, method, status }) {
   const payment = await Pay.create({

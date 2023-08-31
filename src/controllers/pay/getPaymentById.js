@@ -1,4 +1,6 @@
-const { getPaymentByIdHandler } = require('../handlers/getPaymentByIdHandler');
+const {
+  getPaymentByIdHandler,
+} = require('../../handlers/pay/getPaymentByIdHandler');
 
 async function getPaymentById(req, res) {
   const { id } = req.params;

@@ -1,4 +1,4 @@
-const { createPayHandler } = require('../handlers/createPayHandler');
+const { createPayHandler } = require('../../handlers/pay/createPayHandler');
 
 async function createPay(req, res) {
   try {
