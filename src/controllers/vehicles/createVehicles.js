@@ -1,5 +1,5 @@
 
-const createVehiclesHandler = require('../handlers/createVehiclesHandler');
+const createVehiclesHandler = require('../../handlers/vehicles/createVehiclesHandler');
 
 const createVehicles = async (req, res) => {
   const data = req.body;

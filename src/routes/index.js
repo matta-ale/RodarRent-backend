@@ -3,7 +3,7 @@ const { Router } = require('express');
 const postPayValidate = require('../middlewares/postPayValidate');
 const createCustomer = require('../controllers/createCustomer');
 const bulkCreateCustomers = require('../controllers/bulkCreateCustomers')
-const createVehicles = require('../controllers/createVehicles');
+const createVehicles = require('../controllers/vehicles/createVehicles');
 const postVehiclesValidate = require('../middlewares/postVehiclesValidate');
 const getAllCustomers = require('../controllers/getAllCustomers');
 const postBookingValidate = require('../middlewares/postBookingValidate');
@@ -18,6 +18,8 @@ const getCustomerByIdValidation = require('../middlewares/getCustomerByIdValidat
 const deleteCustomerByIdValidation = require('../middlewares/deleteCustomerByIdValidation');
 const { getPaymentById } = require('../controllers/getPaymentById');
 const { getAllBookings } = require('../controllers/getAllBookings');
+const getVehicleByDomain = require('../controllers/Vehicles/getVehicleByDomain');
+const getAllVehicles = require('../controllers/vehicles/getAllVehicles');
 const { getAllLocations } = require('../controllers/getAllLocations');
 const { createLocation } = require('../controllers/createLocation');
 
@@ -28,8 +30,9 @@ router.get('/hc', (req, res) => {
   res.status(200).send('Server up');
 });
 
-
-router.post('/vehicles', postVehiclesValidate, createVehicles)
+router.post('/vehicles', postVehiclesValidate, createVehicles);
+router.get('/vehicles/:domain', getVehicleByDomain);
+router.get('/vehicles', getAllVehicles)
 router.post('/customers/bulk', bulkCreateCustomers);
 router.post('/customers',createCustomerValidation, createCustomer);
 router.get('/customers', getAllCustomers);
