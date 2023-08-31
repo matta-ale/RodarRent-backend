@@ -1,4 +1,5 @@
 const { Customer } = require('../db');
+const CustomError = require('../utils/customError');
 
 const createCustomerHandler = async (data) => {
   const {
@@ -35,7 +36,7 @@ const createCustomerHandler = async (data) => {
       });
       // await videogame.addGenre(genreIds);
       if (!created) {
-        throw new Error('Customer already registered');
+        throw new CustomError('Customer already registered',400);
       } else {
         return customer;
       }
