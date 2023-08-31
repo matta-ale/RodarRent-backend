@@ -23,6 +23,7 @@ const getAllVehicles = require('../controllers/vehicles/getAllVehicles');
 const { getAllLocations } = require('../controllers/getAllLocations');
 const { createLocation } = require('../controllers/createLocation');
 const { getLocationById } = require('../controllers/getLocationById');
+const { getBookingById } = require('../controllers/getBookingById');
 
 const router = Router();
 
@@ -45,6 +46,7 @@ router.get('/payments', getAllPayments);
 router.get('/payments/:id', getPaymentById);
 router.get('/bookings', getAllBookings);
 router.post('/bookings', postBookingValidate, createBooking);
+router.get('/bookings/:id', getBookingById);
 router.get('/locations', getAllLocations);
 router.post('/locations', createLocation);
 router.get('/locations/:id', getLocationById);
