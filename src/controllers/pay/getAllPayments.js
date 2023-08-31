@@ -1,4 +1,6 @@
-const { getAllPaymentsHandler } = require('../handlers/getAllPaymentsHandler');
+const {
+  getAllPaymentsHandler,
+} = require('../../handlers/pay/getAllPaymentsHandler');
 
 async function getAllPayments(req, res) {
   try {
