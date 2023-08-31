@@ -34,7 +34,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     fuel: {
-      type: DataTypes.ENUM('gas', 'diesel', 'electric'),
+      type: DataTypes.ENUM('gas', 'diesel', 'electric', 'hybrid'),
       allowNull: false,
     },
     pricePerDay: {

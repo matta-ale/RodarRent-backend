@@ -16,6 +16,8 @@ const getCustomerByIdValidation = require('../middlewares/getCustomerByIdValidat
 const deleteCustomerByIdValidation = require('../middlewares/deleteCustomerByIdValidation');
 const { getPaymentById } = require('../controllers/getPaymentById');
 const { getAllBookings } = require('../controllers/getAllBookings');
+const getVehicleByDomain = require('../controllers/getVehicleByDomain');
+const getAllVehicles = require('../controllers/getAllVehicles');
 
 const router = Router();
 
@@ -25,12 +27,13 @@ router.get('/hc', (req, res) => {
 });
 
 
-router.post('/vehicles', postVehiclesValidate, createVehicles)
-router.post('/customers', createCustomer);
-router.post('/customers',createCustomerValidation, createCustomer);
+router.post('/vehicles', postVehiclesValidate, createVehicles);
+router.get('/vehicles/:domain', getVehicleByDomain);
+router.get('/vehicles', getAllVehicles)
+router.post('/customers', createCustomerValidation, createCustomer);
 router.get('/customers', getAllCustomers);
-router.get('/customers/:id',getCustomerByIdValidation, getCustomerById);
-router.delete('/customers/:id',deleteCustomerByIdValidation, deleteCustomerById);
+router.get('/customers/:id', getCustomerByIdValidation, getCustomerById);
+router.delete('/customers/:id', deleteCustomerByIdValidation, deleteCustomerById);
 router.post('/payments', postPayValidate, createPay);
 router.get('/payments', getAllPayments);
 router.get('/payments/:id', getPaymentById);
