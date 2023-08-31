@@ -6,7 +6,7 @@ const getCustomerById = async (req, res) => {
     const customer = await getCustomerByIdHandler(id);
     res.status(200).json(customer);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(error.statusCode).json({ error: error.message });
   }
 };
 

@@ -54,9 +54,6 @@ sequelize.models = Object.fromEntries(capsEntries);
 const { Customer, Booking, Location, Pay, Vehicle } = sequelize.models;
 
 // Aca vendrian las relaciones
-// Product.hasMany(Reviews);
-//    Videogame.belongsToMany(Genre, {through: "VideogameGenre"})
-//    Genre.belongsToMany(Videogame, {through: "VideogameGenre"})
 Pay.hasOne(Booking);
 Booking.belongsTo(Pay);
 Customer.hasMany(Booking);
