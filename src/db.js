@@ -63,6 +63,10 @@ Customer.hasMany(Booking);
 Booking.belongsTo(Customer);
 Vehicle.hasOne(Location);
 Location.hasMany(Vehicle);
+Booking.belongsTo(Location, { as: 'pickUpLocation', foreignKey: 'id' });
+Booking.belongsTo(Location, { as: 'returnLocation', foreignKey: 'id' });
+Booking.belongsTo(Vehicle);
+Vehicle.hasMany(Booking);
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
