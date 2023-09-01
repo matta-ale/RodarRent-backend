@@ -18,10 +18,12 @@ const getCustomerByIdValidation = require('../middlewares/getCustomerByIdValidat
 const deleteCustomerByIdValidation = require('../middlewares/deleteCustomerByIdValidation');
 const { getPaymentById } = require('../controllers/pay/getPaymentById');
 const { getAllBookings } = require('../controllers/getAllBookings');
-const getVehicleByDomain = require('../controllers/Vehicles/getVehicleByDomain');
+const getVehicleByDomain = require('../controllers/vehicles/getVehicleByDomain');
 const getAllVehicles = require('../controllers/vehicles/getAllVehicles');
 const { getAllLocations } = require('../controllers/getAllLocations');
 const { createLocation } = require('../controllers/createLocation');
+const updateVehicle = require('../controllers/vehicles/updateVehicle');
+const getAllAvailable = require('../controllers/vehicles/getAllAvailable');
 const { getLocationById } = require('../controllers/getLocationById');
 const { getBookingById } = require('../controllers/getBookingById');
 
@@ -35,16 +37,13 @@ router.get('/hc', (req, res) => {
 router.post('/vehicles', postVehiclesValidate, createVehicles);
 router.get('/vehicles/:domain', getVehicleByDomain);
 router.get('/vehicles', getAllVehicles);
+router.put('/vehicles', updateVehicle);
 router.post('/customers/bulk', bulkCreateCustomers);
 router.post('/customers', createCustomerValidation, createCustomer);
 router.get('/customers', getAllCustomers);
 router.get('/customers/:id', getCustomerByIdValidation, getCustomerById);
 router.put('/customers', createCustomerValidation, updateCustomer);
-router.delete(
-  '/customers/:id',
-  deleteCustomerByIdValidation,
-  deleteCustomerById,
-);
+router.delete('/customers/:id', deleteCustomerByIdValidation, deleteCustomerById);
 router.post('/payments', postPayValidate, createPay);
 router.get('/payments', getAllPayments);
 router.get('/payments/:id', getPaymentById);
@@ -54,5 +53,6 @@ router.get('/bookings/:id', getBookingById);
 router.get('/locations', getAllLocations);
 router.post('/locations', createLocation);
 router.get('/locations/:id', getLocationById);
+router.get('/available', getAllAvailable);
 
 module.exports = router;

@@ -1,9 +1,9 @@
 const { Vehicle } = require('../../db');
 const CustomError = require('../../utils/customError');
 
-const getAllVehiclesHandler = () => {
+const getAllVehiclesHandler = async () => {
     try {
-        const allVehicles = Vehicle.findAll()
+        const allVehicles = await Vehicle.findAll()
         return allVehicles
     } catch (error) {
         throw new CustomError(error.message, 500)
