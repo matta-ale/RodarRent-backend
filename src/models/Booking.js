@@ -31,6 +31,7 @@ module.exports = (sequelize) => {
       stateBooking: {
         type: DataTypes.ENUM('pending', 'inProcess', 'completed', 'canceled'),
         allowNull: false,
+        defaultValue: 'pending',
       }
     },
     {
