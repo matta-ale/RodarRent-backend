@@ -1,4 +1,6 @@
-const { createLocationHandler } = require('../handlers/createLocationHandler')
+const {
+  createLocationHandler,
+} = require("../../handlers/locations/createLocationHandler");
 
 const createLocation = async (req, res) => {
   const data = req.body;
@@ -11,5 +13,5 @@ const createLocation = async (req, res) => {
 };
 
 module.exports = {
-    createLocation 
+  createLocation,
 };

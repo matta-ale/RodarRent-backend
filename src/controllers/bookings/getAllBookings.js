@@ -1,5 +1,6 @@
-
-const { getAllBookingsHandler } = require('../handlers/getAllBookingsHandler')
+const {
+  getAllBookingsHandler,
+} = require("../../handlers/bookings/getAllBookingsHandler");
 
 const getAllBookings = async (req, res) => {
   try {
@@ -11,6 +12,5 @@ const getAllBookings = async (req, res) => {
 };
 
 module.exports = {
-    getAllBookings,
-}
-
+  getAllBookings,
+};

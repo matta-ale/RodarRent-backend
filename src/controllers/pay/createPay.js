@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
 const { createPayHandler } = require('../../handlers/pay/createPayHandler');
+const CustomError = require('../../utils/customError');
 
 async function createPay(req, res) {
   try {
