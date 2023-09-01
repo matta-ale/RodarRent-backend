@@ -21,7 +21,7 @@ module.exports = (sequelize) => {
         },
       },
       date: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
         allowNull: false,
         validate: {
           notEmpty: {
