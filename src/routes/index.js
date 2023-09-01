@@ -30,6 +30,10 @@ const {
 const {
   getPaymentsByDateRangeValidate,
 } = require('../middlewares/pay/getPaymentsByDateRangeValidate');
+const { updatePayment } = require('../controllers/pay/updatePayment');
+const {
+  updatePaymentValidate,
+} = require('../middlewares/pay/updatePaymentValidate');
 
 const router = Router();
 
@@ -59,6 +63,7 @@ router.get(
   getPaymentsByDateRangeValidate,
   getPaymentsByDateRange,
 );
+router.put('/payments/:id', updatePaymentValidate, updatePayment);
 router.get('/bookings', getAllBookings);
 router.post('/bookings', postBookingValidate, createBooking);
 router.get('/bookings/:id', getBookingById);
