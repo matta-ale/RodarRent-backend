@@ -1,4 +1,4 @@
-const { Pay } = require('../db');
+const { Pay } = require('../../db');
 
 async function getPaymentByIdHandler(id) {
   const payment = await Pay.findByPk(id);

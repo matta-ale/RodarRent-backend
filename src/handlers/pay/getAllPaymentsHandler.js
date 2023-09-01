@@ -1,4 +1,4 @@
-const { Pay } = require('../db');
+const { Pay } = require('../../db');
 
 async function getAllPaymentsHandler() {
   const payments = await Pay.findAll();
