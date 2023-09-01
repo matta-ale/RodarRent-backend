@@ -26,6 +26,16 @@ const updateVehicle = require('../controllers/vehicles/updateVehicle');
 const getAllAvailable = require('../controllers/vehicles/getAllAvailable');
 const { getLocationById } = require('../controllers/getLocationById');
 const { getBookingById } = require('../controllers/getBookingById');
+const {
+  getPaymentsByDateRange,
+} = require('../controllers/pay/getPaymentsByDateRange');
+const {
+  getPaymentsByDateRangeValidate,
+} = require('../middlewares/pay/getPaymentsByDateRangeValidate');
+const { updatePayment } = require('../controllers/pay/updatePayment');
+const {
+  updatePaymentValidate,
+} = require('../middlewares/pay/updatePaymentValidate');
 
 const router = Router();
 
@@ -47,6 +57,12 @@ router.delete('/customers/:id', deleteCustomerByIdValidation, deleteCustomerById
 router.post('/payments', postPayValidate, createPay);
 router.get('/payments', getAllPayments);
 router.get('/payments/:id', getPaymentById);
+router.get(
+  '/payment/date',
+  getPaymentsByDateRangeValidate,
+  getPaymentsByDateRange,
+);
+router.put('/payments/:id', updatePaymentValidate, updatePayment);
 router.get('/bookings', getAllBookings);
 router.post('/bookings', postBookingValidate, createBooking);
 router.get('/bookings/:id', getBookingById);
