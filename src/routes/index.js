@@ -18,14 +18,18 @@ const getCustomerByIdValidation = require('../middlewares/getCustomerByIdValidat
 const deleteCustomerByIdValidation = require('../middlewares/deleteCustomerByIdValidation');
 const { getPaymentById } = require('../controllers/pay/getPaymentById');
 const { getAllBookings } = require('../controllers/getAllBookings');
-const getVehicleByDomain = require('../controllers/Vehicles/getVehicleByDomain');
+const getVehicleByDomain = require('../controllers/vehicles/getVehicleByDomain');
 const getAllVehicles = require('../controllers/vehicles/getAllVehicles');
 const { getAllLocations } = require('../controllers/getAllLocations');
 const { createLocation } = require('../controllers/createLocation');
 const { getLocationById } = require('../controllers/getLocationById');
 const { getBookingById } = require('../controllers/getBookingById');
-const getPaymentsByDateRange = require('../controllers/pay/getPaymentsByDateRange');
-const getPaymentsByDateRangeValidate = require('../middlewares/pay/getPaymentsByDateRangeValidate');
+const {
+  getPaymentsByDateRange,
+} = require('../controllers/pay/getPaymentsByDateRange');
+const {
+  getPaymentsByDateRangeValidate,
+} = require('../middlewares/pay/getPaymentsByDateRangeValidate');
 
 const router = Router();
 
@@ -50,7 +54,11 @@ router.delete(
 router.post('/payments', postPayValidate, createPay);
 router.get('/payments', getAllPayments);
 router.get('/payments/:id', getPaymentById);
-router.get('/payments', getPaymentsByDateRangeValidate, getPaymentsByDateRange);
+router.get(
+  '/payment/date',
+  getPaymentsByDateRangeValidate,
+  getPaymentsByDateRange,
+);
 router.get('/bookings', getAllBookings);
 router.post('/bookings', postBookingValidate, createBooking);
 router.get('/bookings/:id', getBookingById);

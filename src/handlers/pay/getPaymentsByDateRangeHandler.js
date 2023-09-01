@@ -6,7 +6,7 @@ async function getPaymentsByDateRangeHandler(startDate, endDate) {
     const payments = await Pay.findAll({
       where: {
         date: {
-          [Op.between]: [startDate, endDate],
+          [Op.between]: [new Date(startDate), new Date(endDate)],
         },
       },
     });
@@ -18,4 +18,4 @@ async function getPaymentsByDateRangeHandler(startDate, endDate) {
   }
 }
 
-module.exports = getPaymentsByDateRangeHandler;
+module.exports = { getPaymentsByDateRangeHandler };
