@@ -18,10 +18,13 @@ const getCustomerByIdValidation = require('../middlewares/getCustomerByIdValidat
 const deleteCustomerByIdValidation = require('../middlewares/deleteCustomerByIdValidation');
 const { getPaymentById } = require('../controllers/getPaymentById');
 const { getAllBookings } = require('../controllers/getAllBookings');
-const getVehicleByDomain = require('../controllers/Vehicles/getVehicleByDomain');
+const getVehicleByDomain = require('../controllers/vehicles/getVehicleByDomain');
 const getAllVehicles = require('../controllers/vehicles/getAllVehicles');
 const { getAllLocations } = require('../controllers/getAllLocations');
 const { createLocation } = require('../controllers/createLocation');
+const updateVehicle = require('../controllers/vehicles/updateVehicle');
+const getAllAvailable = require('../controllers/vehicles/getAllAvailable');
+
 
 const router = Router();
 
@@ -32,7 +35,8 @@ router.get('/hc', (req, res) => {
 
 router.post('/vehicles', postVehiclesValidate, createVehicles);
 router.get('/vehicles/:domain', getVehicleByDomain);
-router.get('/vehicles', getAllVehicles)
+router.get('/vehicles', getAllVehicles);
+router.put('/vehicles', updateVehicle);
 router.post('/customers/bulk', bulkCreateCustomers);
 router.post('/customers',createCustomerValidation, createCustomer);
 router.get('/customers', getAllCustomers);
@@ -46,6 +50,6 @@ router.get('/bookings', getAllBookings);
 router.post('/bookings', postBookingValidate, createBooking);
 router.get('/locations', getAllLocations);
 router.post('/locations', createLocation);
-
+router.get('/available', getAllAvailable);
 
 module.exports = router;

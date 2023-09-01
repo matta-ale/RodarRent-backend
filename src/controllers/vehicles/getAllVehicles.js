@@ -1,9 +1,9 @@
-const getAllVehiclesHandler = require("../../handlers/Vehicles/getAllVehiclesHandler");
+const getAllVehiclesHandler = require("../../handlers/vehicles/getAllVehiclesHandler");
 
 
-const getAllVehicles = (req, res) => {
+const getAllVehicles = async (req, res) => {
     try {
-        const allVehicles = getAllVehiclesHandler()
+        const allVehicles = await getAllVehiclesHandler()
         res.status(200).json(allVehicles)
     } catch (error) {
         res.status(error.statusCode).json({ error: error.message })
