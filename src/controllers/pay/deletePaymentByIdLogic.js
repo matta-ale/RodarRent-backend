@@ -1,6 +1,4 @@
-const {
-  deletePaymentByIdHandler,
-} = require('../../handlers/pay/deletePaymentHandler');
+const deletePaymentByIdHandler = require('../../handlers/pay/deletePaymentHandler');
 
 async function deletePaymentByIdLogic(req, res) {
   try {
@@ -15,4 +13,4 @@ async function deletePaymentByIdLogic(req, res) {
   }
 }
 
-module.exports = { deletePaymentByIdLogic };
+module.exports = deletePaymentByIdLogic;

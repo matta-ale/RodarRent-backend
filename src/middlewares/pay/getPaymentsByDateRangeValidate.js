@@ -10,4 +10,4 @@ const getPaymentsByDateRangeValidate = (req, res, next) => {
   next();
 };
 
-module.exports = { getPaymentsByDateRangeValidate };
+module.exports = getPaymentsByDateRangeValidate;

@@ -1,6 +1,4 @@
-const {
-  getAllPaymentsHandler,
-} = require('../../handlers/pay/getAllPaymentsHandler');
+const getAllPaymentsHandler = require('../../handlers/pay/getAllPaymentsHandler');
 
 async function getAllPayments(req, res) {
   try {
@@ -11,6 +9,4 @@ async function getAllPayments(req, res) {
   }
 }
 
-module.exports = {
-  getAllPayments,
-};
+module.exports = getAllPayments;

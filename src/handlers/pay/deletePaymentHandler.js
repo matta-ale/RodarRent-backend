@@ -9,4 +9,4 @@ async function deletePaymentByIdHandler(id) {
   return false;
 }
 
-module.exports = { deletePaymentByIdHandler };
+module.exports = deletePaymentByIdHandler;

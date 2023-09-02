@@ -30,4 +30,4 @@ function updatePaymentValidate(req, res, next) {
 
   next();
 }
-module.exports = { updatePaymentValidate };
+module.exports = updatePaymentValidate;
