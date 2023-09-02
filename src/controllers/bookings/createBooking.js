@@ -1,4 +1,6 @@
-const { createBookingHandler } = require('../handlers/createBookingHandler')
+const {
+  createBookingHandler,
+} = require("../../handlers/bookings/createBookingHandler");
 
 const createBooking = async (req, res) => {
   const data = req.body;

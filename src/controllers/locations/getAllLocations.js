@@ -1,4 +1,6 @@
-const { getAllLocationsHandler } = require('../handlers/getAllLocationsHandler')
+const {
+  getAllLocationsHandler,
+} = require("../../handlers/locations/getAllLocationsHandler");
 
 const getAllLocations = async (req, res) => {
   try {
@@ -10,5 +12,5 @@ const getAllLocations = async (req, res) => {
 };
 
 module.exports = {
-    getAllLocations,
-}
+  getAllLocations,
+};

@@ -1,6 +1,6 @@
-const { Location } = require('../db');
+const { Location } = require("../../db");
 
-const createLocationHandler = async ({address, city, country, zipCode}) => {
+const createLocationHandler = async ({ address, city, country, zipCode }) => {
   const location = await Location.create({
     address,
     city,
@@ -8,7 +8,7 @@ const createLocationHandler = async ({address, city, country, zipCode}) => {
     zipCode,
   });
   return location;
-}
+};
 
 module.exports = {
   createLocationHandler,
