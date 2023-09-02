@@ -8,6 +8,9 @@ async function getPaymentsByDateRangeHandler(startDate, endDate) {
         date: {
           [Op.between]: [new Date(startDate), new Date(endDate)],
         },
+        status: {
+          [Op.ne]: 'deleted',
+        },
       },
     });
     return payments;
