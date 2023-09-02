@@ -1,4 +1,4 @@
-const updateCustomerHandler = require('../handlers/updateCustomerHandler')
+const updateCustomerHandler = require('../../handlers/customers/updateCustomerHandler')
 
 const updateCustomer = async (req, res) => {
   const data = req.body;

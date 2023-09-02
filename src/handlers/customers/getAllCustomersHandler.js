@@ -1,4 +1,4 @@
-const { Customer } = require('../db');
+const { Customer } = require('../../db');
 
 const getAllCustomersHandler = async (data) => {
   try {

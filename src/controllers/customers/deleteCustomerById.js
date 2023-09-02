@@ -1,4 +1,4 @@
-const deleteCustomerByIdHandler = require('../handlers/deleteCustomerByIdHandler')
+const deleteCustomerByIdHandler = require('../../handlers/customers/deleteCustomerByIdHandler')
 
 const deleteCustomerById = async (req, res) => {
   const {id} = req.params
