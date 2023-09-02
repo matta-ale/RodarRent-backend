@@ -51,36 +51,23 @@ router.get("/hc", (req, res) => {
   // healthcheck
   res.status(200).send("Server up");
 });
-
-router.post("/vehicles", postVehiclesValidate, createVehicles);
-router.get("/vehicles/:domain", getVehicleById);
-router.get("/vehicles", getAllVehicles);
-router.put("/vehicles", updateVehicle);
-router.post("/customers/bulk", bulkCreateCustomers);
-router.post("/customers", createCustomerValidation, createCustomer);
-router.get("/customers", getAllCustomers);
-router.get("/customers/filter", getFilteredCustomers);
-router.get("/customers/:id", getCustomerByIdValidation, getCustomerById);
-router.put("/customers", createCustomerValidation, updateCustomer);
-router.delete(
-  "/customers/:id",
-  deleteCustomerByIdValidation,
-  deleteCustomerById
-);
-router.post("/payments", postPayValidate, createPay);
-router.get("/payments", getAllPayments);
-router.get("/payments/:id", getPaymentById);
-router.get(
-  "/payment/date",
-  getPaymentsByDateRangeValidate,
-  getPaymentsByDateRange
-);
-router.put("/payments/:id", updatePaymentValidate, updatePayment);
-router.delete(
-  "/payments/:id",
-  deletePaymentByIdLogicValidate,
-  deletePaymentByIdLogic
-);
+router.post('/vehicles', postVehiclesValidate, createVehicles);
+router.get('/vehicles/:domain', getVehicleByDomain);
+router.get('/vehicles', getAllVehicles);
+router.put('/vehicles', updateVehicle);
+router.post('/customers/bulk', bulkCreateCustomers);
+router.post('/customers', createCustomerValidation, createCustomer);
+router.get('/customers', getAllCustomers);
+router.get('/customers/filter', getFilteredCustomers);
+router.get('/customers/:id', getCustomerByIdValidation, getCustomerById);
+router.put('/customers', createCustomerValidation, updateCustomer);
+router.put('/customers/:id',deleteCustomerByIdValidation,deleteCustomerById);
+router.post('/payments', postPayValidate, createPay);
+router.get('/payments', getAllPayments);
+router.get('/payments/:id', getPaymentById);
+router.get('/payment/date',getPaymentsByDateRangeValidate,getPaymentsByDateRange);
+router.put('/payments/:id', updatePaymentValidate, updatePayment);
+router.delete('/payments/:id',deletePaymentByIdLogicValidate,deletePaymentByIdLogic);
 router.get("/bookings", getAllBookings);
 router.post("/bookings", postBookingValidate, createBooking);
 router.get("/bookings/:id", getBookingById);
