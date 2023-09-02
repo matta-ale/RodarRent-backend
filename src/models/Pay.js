@@ -21,7 +21,7 @@ module.exports = (sequelize) => {
         },
       },
       date: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
         allowNull: false,
         validate: {
           notEmpty: {
@@ -43,7 +43,7 @@ module.exports = (sequelize) => {
         },
       },
       status: {
-        type: DataTypes.ENUM('paid', 'pending'),
+        type: DataTypes.ENUM('paid', 'pending', 'deleted'),
         allowNull: false,
         defaultValue: 'pending',
         validate: {
