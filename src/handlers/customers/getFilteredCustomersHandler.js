@@ -5,7 +5,7 @@ const CustomError = require('../../utils/customError');
 const getFilteredCustomers = async (data) => {
   const {name,lastName,city,country,email, orderVar, orderMode, limit} = data
   
-  let filterCriteria = {};
+  let filterCriteria = {isActive:true};
   let orderArray = ['lastName','ASC',10]
     
     if (name)  filterCriteria.name = {[Op.like]: `%${name}%`};

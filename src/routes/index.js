@@ -61,11 +61,7 @@ router.get('/customers', getAllCustomers);
 router.get('/customers/filter', getFilteredCustomers);
 router.get('/customers/:id', getCustomerByIdValidation, getCustomerById);
 router.put('/customers', createCustomerValidation, updateCustomer);
-router.delete(
-  '/customers/:id',
-  deleteCustomerByIdValidation,
-  deleteCustomerById
-);
+router.put('/customers/:id',deleteCustomerByIdValidation,deleteCustomerById);
 router.post('/payments', postPayValidate, createPay);
 router.get('/payments', getAllPayments);
 router.get('/payments/:id', getPaymentById);

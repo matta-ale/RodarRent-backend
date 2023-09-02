@@ -5,6 +5,7 @@ const createCustomerHandler = async (data) => {
   const {
     name,
     lastName,
+    personalId,
     birthDate,
     address,
     city,
@@ -16,7 +17,7 @@ const createCustomerHandler = async (data) => {
   
     try {
       const [customer, created] = await Customer.findOrCreate({
-        where: { email },
+        where: { personalId },
         defaults: {
           name,
           lastName,
@@ -26,6 +27,7 @@ const createCustomerHandler = async (data) => {
           country,
           zipCode,
           phoneNumber,
+          email,
         },
         // include: [
         //   {

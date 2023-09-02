@@ -1,8 +1,9 @@
 const createCustomerValidation = (req, res, next) => {
-  const {name, lastName, birthDate, address, city, country, zipCode, phoneNumber, email} = req.body;
+  const {name, lastName, personalId,birthDate, address, city, country, zipCode, phoneNumber, email} = req.body;
 
   if (!name) return res.status(404).json({ error: 'Missing name' });
   if (!lastName) return res.status(404).json({ error: 'Missing last name' });
+  if (!personalId) return res.status(404).json({ error: 'Missing id' });
   if (!birthDate) return res.status(404).json({ error: 'Missing birth date' });
   if (!address) return res.status(404).json({ error: 'Missing address' });
   if (!city) return res.status(404).json({ error: 'Missing city' });

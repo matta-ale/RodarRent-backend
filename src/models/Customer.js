@@ -7,7 +7,7 @@ module.exports = (sequelize) => {
   sequelize.define(
     'Customer',
     {
-      idCustomer: {
+      id: {
         type: DataTypes.UUID,
         primaryKey: true,
         defaultValue: Sequelize.UUIDV4,
@@ -21,6 +21,12 @@ module.exports = (sequelize) => {
       lastName: {
         type: DataTypes.STRING,
         allowNull: false,
+      },
+
+      personalId: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
       },
 
       birthDate: {
@@ -62,7 +68,12 @@ module.exports = (sequelize) => {
             msg: "Must be a valid email address",
           }
         }
-      }
+      },
+      
+      isActive: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+      },
     },
     { timestamps: false }
   );
