@@ -1,4 +1,4 @@
-const getCustomerByIdHandler = require('../handlers/getCustomerByIdHandler')
+const getCustomerByIdHandler = require('../../handlers/customers/getCustomerByIdHandler')
 
 const getCustomerById = async (req, res) => {
   const {id} = req.params

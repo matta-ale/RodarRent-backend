@@ -1,11 +1,19 @@
 const { Router } = require('express');
 
+const createCustomer = require('../controllers/customers/createCustomer');
+const bulkCreateCustomers = require('../controllers/customers/bulkCreateCustomers');
+const getAllCustomers = require('../controllers/customers/getAllCustomers');
+const getFilteredCustomers = require('../controllers/customers/getFilteredCustomers');
+const updateCustomer = require('../controllers/customers/updateCustomer');
+const getCustomerById = require('../controllers/customers/getCustomerById');
+const deleteCustomerById = require('../controllers/customers/deleteCustomerById');
+const createCustomerValidation = require('../middlewares/createCustomerValidation');
+const getCustomerByIdValidation = require('../middlewares/getCustomerByIdValidation');
+const deleteCustomerByIdValidation = require('../middlewares/deleteCustomerByIdValidation');
+
 const postPayValidate = require('../middlewares/pay/postPayValidate');
-const createCustomer = require('../controllers/createCustomer');
-const bulkCreateCustomers = require('../controllers/bulkCreateCustomers');
 const createVehicles = require('../controllers/vehicles/createVehicles');
 const postVehiclesValidate = require('../middlewares/postVehiclesValidate');
-const getAllCustomers = require('../controllers/getAllCustomers');
 const postBookingValidate = require('../middlewares/postBookingValidate');
 const createBooking = require('../controllers/bookings/createBooking');
 const getCustomerById = require('../controllers/getCustomerById');
@@ -13,9 +21,6 @@ const updateCustomer = require('../controllers/updateCustomer');
 const deleteCustomerById = require('../controllers/deleteCustomerById');
 const { createPay } = require('../controllers/pay/createPay');
 const { getAllPayments } = require('../controllers/pay/getAllPayments');
-const createCustomerValidation = require('../middlewares/createCustomerValidation');
-const getCustomerByIdValidation = require('../middlewares/getCustomerByIdValidation');
-const deleteCustomerByIdValidation = require('../middlewares/deleteCustomerByIdValidation');
 const { getPaymentById } = require('../controllers/pay/getPaymentById');
 const { getAllBookings } = require('../controllers/bookings/getAllBookings');
 const getVehicleByDomain = require('../controllers/vehicles/getVehicleByDomain');
@@ -57,6 +62,7 @@ router.put('/vehicles', updateVehicle);
 router.post('/customers/bulk', bulkCreateCustomers);
 router.post('/customers', createCustomerValidation, createCustomer);
 router.get('/customers', getAllCustomers);
+router.get('/customers/filter', getFilteredCustomers);
 router.get('/customers/:id', getCustomerByIdValidation, getCustomerById);
 router.put('/customers', createCustomerValidation, updateCustomer);
 router.delete(

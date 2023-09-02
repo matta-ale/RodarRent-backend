@@ -1,5 +1,4 @@
-
-const getAllCustomersHandler = require('../handlers/getAllCustomersHandler')
+const getAllCustomersHandler = require('../../handlers/customers/getAllCustomersHandler')
 
 const getAllCustomers = async (req, res) => {
   try {

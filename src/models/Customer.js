@@ -38,6 +38,11 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
 
+      country: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+
       zipCode: {
         type: DataTypes.STRING,
         allowNull: false, //podrá ser true?
