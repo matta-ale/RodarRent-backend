@@ -1,4 +1,4 @@
-const createCustomerHandler = require('../handlers/createCustomerHandler')
+const createCustomerHandler = require('../../handlers/customers/createCustomerHandler')
 
 const createCustomer = async (req, res) => {
   const data = req.body;

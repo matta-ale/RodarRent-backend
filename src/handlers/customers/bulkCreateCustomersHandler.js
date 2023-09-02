@@ -1,5 +1,5 @@
-const { Customer } = require('../db');
-const CustomError = require('../utils/customError');
+const { Customer } = require('../../db');
+const CustomError = require('../../utils/customError');
 
 const bulkCreateCustomersHandler = async (data) => {
     try {

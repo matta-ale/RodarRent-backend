@@ -1,10 +1,10 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes } = require("sequelize");
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define(
-    'Booking',
+    "Booking",
     {
       id: {
         type: DataTypes.UUID,
@@ -29,16 +29,17 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       stateBooking: {
-        type: DataTypes.ENUM('pending', 'inProcess', 'completed', 'canceled'),
+        type: DataTypes.ENUM("pending", "inProcess", "completed", "canceled"),
         allowNull: false,
-        defaultValue: 'pending',
-      }
+        defaultValue: "pending",
+      },
+      amount: {
+        type: DataTypes.FLOAT,
+        allowNull: true,
+      },
     },
     {
       timestamps: false,
-    },
+    }
   );
 };
-//
-// Booking.belongsTo(Location, { as: 'pickUpLocation', foreignKey: 'pickUpLocationId' });
-// Booking.belongsTo(Location, { as: 'returnLocation', foreignKey: 'returnLocationId' });
