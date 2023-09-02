@@ -10,15 +10,11 @@ const deleteCustomerById = require('../controllers/customers/deleteCustomerById'
 const createCustomerValidation = require('../middlewares/createCustomerValidation');
 const getCustomerByIdValidation = require('../middlewares/getCustomerByIdValidation');
 const deleteCustomerByIdValidation = require('../middlewares/deleteCustomerByIdValidation');
-
 const postPayValidate = require('../middlewares/pay/postPayValidate');
 const createVehicles = require('../controllers/vehicles/createVehicles');
 const postVehiclesValidate = require('../middlewares/postVehiclesValidate');
 const postBookingValidate = require('../middlewares/postBookingValidate');
 const createBooking = require('../controllers/bookings/createBooking');
-const getCustomerById = require('../controllers/getCustomerById');
-const updateCustomer = require('../controllers/updateCustomer');
-const deleteCustomerById = require('../controllers/deleteCustomerById');
 const { createPay } = require('../controllers/pay/createPay');
 const { getAllPayments } = require('../controllers/pay/getAllPayments');
 const { getPaymentById } = require('../controllers/pay/getPaymentById');
@@ -68,7 +64,7 @@ router.put('/customers', createCustomerValidation, updateCustomer);
 router.delete(
   '/customers/:id',
   deleteCustomerByIdValidation,
-  deleteCustomerById,
+  deleteCustomerById
 );
 router.post('/payments', postPayValidate, createPay);
 router.get('/payments', getAllPayments);
@@ -76,13 +72,13 @@ router.get('/payments/:id', getPaymentById);
 router.get(
   '/payment/date',
   getPaymentsByDateRangeValidate,
-  getPaymentsByDateRange,
+  getPaymentsByDateRange
 );
 router.put('/payments/:id', updatePaymentValidate, updatePayment);
 router.delete(
   '/payments/:id',
   deletePaymentByIdLogicValidate,
-  deletePaymentByIdLogic,
+  deletePaymentByIdLogic
 );
 router.get('/bookings', getAllBookings);
 router.post('/bookings', postBookingValidate, createBooking);
