@@ -19,7 +19,7 @@ const { createPay } = require("../controllers/pay/createPay");
 const { getAllPayments } = require("../controllers/pay/getAllPayments");
 const { getPaymentById } = require("../controllers/pay/getPaymentById");
 const { getAllBookings } = require("../controllers/bookings/getAllBookings");
-const getVehicleByDomain = require("../controllers/vehicles/getVehicleByDomain");
+const getVehicleById = require("../controllers/vehicles/getVehicleById");
 const getAllVehicles = require("../controllers/vehicles/getAllVehicles");
 const { getAllLocations } = require("../controllers/locations/getAllLocations");
 const { createLocation } = require("../controllers/locations/createLocation");
@@ -53,7 +53,7 @@ router.get("/hc", (req, res) => {
 });
 
 router.post("/vehicles", postVehiclesValidate, createVehicles);
-router.get("/vehicles/:domain", getVehicleByDomain);
+router.get("/vehicles/:domain", getVehicleById);
 router.get("/vehicles", getAllVehicles);
 router.put("/vehicles", updateVehicle);
 router.post("/customers/bulk", bulkCreateCustomers);

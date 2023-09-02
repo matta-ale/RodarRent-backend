@@ -33,9 +33,9 @@ const getAvailableVehiclesHandler = async (query) => {
                     [Op.gte]: new Date(startDate)
                 }
             },
-            attributes: ['VehicleDomain'],
+            attributes: ['VehicleId'],
         })
-        let busyCars = busy.map(item => item.VehicleDomain).filter(item => item !== null)
+        let busyCars = busy.map(item => item.VehicleId).filter(item => item !== null)
 
         // setup where for DDBB query
         const where = {
@@ -80,7 +80,7 @@ const getAvailableVehiclesHandler = async (query) => {
         const availableVehicles = await Vehicle.findAll({
             where,
             order,
-            attributes: ['domain', 'brand', 'model', 'type', 'passengers', 'transmission', 'fuel', 'pricePerDay', 'image']
+            attributes: ['id', 'domain', 'brand', 'model', 'type', 'passengers', 'transmission', 'fuel', 'pricePerDay', 'image']
         })
 
         
@@ -110,9 +110,9 @@ const getAvailableVehiclesHandler = async (query) => {
             offset = 0
         }
 
-        const page = (offset < limit) ? 1 : Math.ceil(offset / limit)
+        const page = (offset < limit) ? 1 : Math.ceil((offset / limit)+0.01)
         const totalPages = Math.ceil(results.length/limit)
-        const showFrom = (offset-limit < 0) ? 0 : (offset-limit)
+        const showFrom = (offset > results.length) ? 0 : offset
         const showTo = (showFrom + limit > results.length) ? results.length : (showFrom + limit)
         
         let nextString = '/available?'
@@ -133,11 +133,11 @@ const getAvailableVehiclesHandler = async (query) => {
         const prev = (page === 1) ? null : prevString  
 
         const response = {
-            page,
+            currentPage: page,
             totalPages,
             next,
             prev,
-            count: results.length,
+            resultsCount: results.length,
             results: results.slice(showFrom, showTo)
         }
 
