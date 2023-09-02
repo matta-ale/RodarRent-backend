@@ -36,6 +36,12 @@ const { updatePayment } = require('../controllers/pay/updatePayment');
 const {
   updatePaymentValidate,
 } = require('../middlewares/pay/updatePaymentValidate');
+const {
+  deletePaymentByIdLogic,
+} = require('../controllers/pay/deletePaymentByIdLogic');
+const {
+  deletePaymentByIdLogicValidate,
+} = require('../middlewares/pay/deletePaymentByIdLogicValidate');
 
 const router = Router();
 
@@ -53,7 +59,11 @@ router.post('/customers', createCustomerValidation, createCustomer);
 router.get('/customers', getAllCustomers);
 router.get('/customers/:id', getCustomerByIdValidation, getCustomerById);
 router.put('/customers', createCustomerValidation, updateCustomer);
-router.delete('/customers/:id', deleteCustomerByIdValidation, deleteCustomerById);
+router.delete(
+  '/customers/:id',
+  deleteCustomerByIdValidation,
+  deleteCustomerById,
+);
 router.post('/payments', postPayValidate, createPay);
 router.get('/payments', getAllPayments);
 router.get('/payments/:id', getPaymentById);
@@ -63,6 +73,11 @@ router.get(
   getPaymentsByDateRange,
 );
 router.put('/payments/:id', updatePaymentValidate, updatePayment);
+router.delete(
+  '/payments/:id',
+  deletePaymentByIdLogicValidate,
+  deletePaymentByIdLogic,
+);
 router.get('/bookings', getAllBookings);
 router.post('/bookings', postBookingValidate, createBooking);
 router.get('/bookings/:id', getBookingById);
