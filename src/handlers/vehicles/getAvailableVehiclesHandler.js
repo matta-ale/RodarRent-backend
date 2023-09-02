@@ -1,5 +1,6 @@
 const { Vehicle, Booking } = require('../../db');
 const { Op } = require('sequelize');
+const CustomError = require('../../utils/customError');
 
 
 const getAvailableVehiclesHandler = async (query) => {
@@ -20,9 +21,6 @@ const getAvailableVehiclesHandler = async (query) => {
             passengersMax 
         } = query 
 
-        limit = Number(limit) // pasar a opcionales?
-        offset = Number(offset)
-
         const busy = await Booking.findAll({
             where: {
                 stateBooking: {
@@ -35,9 +33,9 @@ const getAvailableVehiclesHandler = async (query) => {
                     [Op.gte]: new Date(startDate)
                 }
             },
-            attributes: ['VehicleDomain'],
+            attributes: ['VehicleId'],
         })
-        let busyCars = busy.map(item => item.VehicleDomain).filter(item => item !== null)
+        let busyCars = busy.map(item => item.VehicleId).filter(item => item !== null)
 
         // setup where for DDBB query
         const where = {
@@ -82,7 +80,7 @@ const getAvailableVehiclesHandler = async (query) => {
         const availableVehicles = await Vehicle.findAll({
             where,
             order,
-            attributes: ['domain', 'brand', 'model', 'type', 'passengers', 'transmission', 'fuel', 'pricePerDay', 'image']
+            attributes: ['id', 'domain', 'brand', 'model', 'type', 'passengers', 'transmission', 'fuel', 'pricePerDay', 'image']
         })
 
         
@@ -97,28 +95,56 @@ const getAvailableVehiclesHandler = async (query) => {
                 oneOfEachType.push(availableCar)
             }
         })
+        const results = oneOfEachType;
         ///////////
 
-        const page = (offset < limit) ? 1 : Math.ceil(offset / limit)
-        const showFrom = (offset-limit < 0) ? 0 : (offset-limit)
-        const showTo = (showFrom + limit > oneOfEachType.length) ? oneOfEachType.length : (showFrom + limit)
-        const next = 'work in progress'
-        const prev = 'work in progress'
+        if (limit) { 
+            limit = Number(limit) 
+        } else {
+            limit = results.length
+        }
+        
+        if (offset) { 
+            offset = Number(offset) 
+        } else {
+            offset = 0
+        }
+
+        const page = (offset < limit) ? 1 : Math.ceil((offset / limit)+0.01)
+        const totalPages = Math.ceil(results.length/limit)
+        const showFrom = (offset > results.length) ? 0 : offset
+        const showTo = (showFrom + limit > results.length) ? results.length : (showFrom + limit)
+        
+        let nextString = '/available?'
+        let prevString = '/available?'
+        for (let prop in query) {
+            if (nextString.at(-1) !== '?') { nextString += '&' }
+            if (prevString.at(-1) !== '?') { prevString += '&' }
+            if (prop === 'offset') {
+                nextString += `offset=${showTo}`
+                prevString += `offset=${showFrom-limit}`
+            } else {
+                nextString += `${prop}=${query[prop]}`
+                prevString += `${prop}=${query[prop]}`
+            }
+        }
+
+        const next = (page === totalPages) ? null : nextString
+        const prev = (page === 1) ? null : prevString  
 
         const response = {
-            limit,
-            offset,
-            page,
+            currentPage: page,
+            totalPages,
             next,
             prev,
-            count: oneOfEachType.length,
-            results: oneOfEachType.slice(showFrom, showTo)
+            resultsCount: results.length,
+            results: results.slice(showFrom, showTo)
         }
 
         return response
 
     } catch (error) {
-        throw error // handle con CustomError
+        throw new CustomError(error.message, 500)
     }
 }
 

@@ -6,7 +6,7 @@ module.exports = (sequelize) => {
   sequelize.define(
     'Pay',
     {
-      idPay: {
+      id: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
