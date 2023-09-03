@@ -2,11 +2,12 @@ const { faker } = require('@faker-js/faker');
 const fs = require('fs');
 
 let customers = [];
-for (let i = 0; i < 200; i++) {
+for (let i = 0; i < 40; i++) {
   const name = faker.name.firstName();
   const customer = {
     name: name,    
-    lastName: faker.name.lastName(),    
+    lastName: faker.name.lastName(),
+    personalId: Math.ceil(Math.random()*10000000).toString(),    
     birthDate: faker.date.birthdate().toISOString().split('T')[0],
     address: faker.address.streetAddress(),
     city: faker.address.city(),
