@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const routes = require('./routes/index.js');
 const paymentsRouter = require('./routes/pay/paymentsRouter');
+const customersRouter = require('./routes/customers/customersRouter.js');
 
 // require('./db.js');
 
@@ -30,6 +31,7 @@ server.use((req, res, next) => {
 
 server.use('/', routes);
 server.use('/', paymentsRouter);
+server.use('/', customersRouter);
 
 // Error catching endware.
 server.use((err, req, res, next) => {
