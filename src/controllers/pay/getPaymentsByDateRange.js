@@ -1,6 +1,4 @@
-const {
-  getPaymentsByDateRangeHandler,
-} = require('../../handlers/pay/getPaymentsByDateRangeHandler');
+const getPaymentsByDateRangeHandler = require('../../handlers/pay/getPaymentsByDateRangeHandler');
 
 async function getPaymentsByDateRange(req, res) {
   const { startDate, endDate } = req.query;
@@ -12,4 +10,4 @@ async function getPaymentsByDateRange(req, res) {
   }
 }
 
-module.exports = { getPaymentsByDateRange };
+module.exports = getPaymentsByDateRange;

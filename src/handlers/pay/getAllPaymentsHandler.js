@@ -12,6 +12,4 @@ async function getAllPaymentsHandler() {
   return payments;
 }
 
-module.exports = {
-  getAllPaymentsHandler,
-};
+module.exports = getAllPaymentsHandler;

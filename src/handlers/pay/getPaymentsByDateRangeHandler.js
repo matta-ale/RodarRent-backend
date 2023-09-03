@@ -21,4 +21,4 @@ async function getPaymentsByDateRangeHandler(startDate, endDate) {
   }
 }
 
-module.exports = { getPaymentsByDateRangeHandler };
+module.exports = getPaymentsByDateRangeHandler;
