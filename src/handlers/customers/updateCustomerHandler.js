@@ -14,7 +14,7 @@ const updateCustomerHandler = async (data) => {
       return `customer with id ${id} succesfully updated`;
     }
   } catch (error) {
-    throw error;
+    throw new CustomError(error.message,500);
   }
 };
 

@@ -10,7 +10,7 @@ const deleteCustomerByIdHandler = async (id) => {
     if(!deletedCustomer) throw new CustomError(`There's no customer matching id ${Customerid}`,404)
     return deletedCustomer
   } catch (error) {
-    throw error;
+    throw new CustomError(error.message,500);
   }
 };
 

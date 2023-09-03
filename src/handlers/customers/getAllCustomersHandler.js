@@ -1,4 +1,5 @@
 const { Customer } = require('../../db');
+const CustomError = require('../../utils/customError');
 
 const getAllCustomersHandler = async (page,pageSize) => {
   try {
@@ -8,7 +9,7 @@ const getAllCustomersHandler = async (page,pageSize) => {
       offset,
       limit: pageSize,
     });
-    if(customers.rows.length===0) throw new Error('No customers in database')
+    if(customers.rows.length===0) throw new CustomError('No customers in database',400);
     const totalPages = Math.ceil(customers.count / pageSize);
 
     const pagination = {
@@ -22,7 +23,7 @@ const getAllCustomersHandler = async (page,pageSize) => {
 
     return { data: customers.rows, pagination };
   } catch (error) {
-    throw error;
+    throw new CustomError(error.message,500);
   }
 };
 

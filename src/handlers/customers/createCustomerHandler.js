@@ -43,7 +43,7 @@ const createCustomerHandler = async (data) => {
         return customer;
       }
     } catch (error) {
-      throw error;
+      throw new CustomError(error.message,500);
     }
 };
 

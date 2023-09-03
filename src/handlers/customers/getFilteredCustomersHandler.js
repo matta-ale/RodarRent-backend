@@ -38,7 +38,7 @@ const getFilteredCustomers = async (data) => {
 
     return { data: customers.rows, pagination };
   } catch (error) {
-    throw error;
+    throw new CustomError(error.message,500);
   }
 };
 
