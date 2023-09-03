@@ -2,10 +2,11 @@ const getAllCustomersHandler = require('../../handlers/customers/getAllCustomers
 
 const getAllCustomers = async (req, res) => {
   try {
-    const customers = await getAllCustomersHandler();
+    const { page = 1, pageSize = 10 } = req.query;
+    const customers = await getAllCustomersHandler(page,pageSize);
     res.status(200).json(customers);
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    res.status(error.statusCode?error.statusCode:500).json({ error: error.message });
   }
 };
 

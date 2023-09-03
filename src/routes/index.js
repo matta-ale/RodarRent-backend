@@ -36,7 +36,7 @@ router.get("/hc", (req, res) => {
   res.status(200).send("Server up");
 });
 router.post("/vehicles", postVehiclesValidate, createVehicles);
-router.get("/vehicles/:domain", getVehicleById);
+router.get("/vehicles/:id", getVehicleById);
 router.get("/vehicles", getAllVehicles);
 router.put("/vehicles", updateVehicle);
 router.post("/customers/bulk", bulkCreateCustomers);

@@ -6,11 +6,7 @@ const updateCustomer = async (req, res) => {
     const customer = await updateCustomerHandler(data);
     res.status(200).json(customer);
   } catch (error) {
-    if (error.statusCode) {
-      res.status(error.statusCode).json({ error: error.message });
-    } else {
-      res.status(error).json({ error: error.message });
-    }
+    res.status(error.statusCode?error.statusCode:500).json({ error: error.message });
   }
 };
 
