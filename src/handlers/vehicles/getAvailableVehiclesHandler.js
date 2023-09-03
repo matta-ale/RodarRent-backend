@@ -21,6 +21,7 @@ const getAvailableVehiclesHandler = async (query) => {
             passengersMax 
         } = query 
 
+        // make query for Bookings intersecting the desired period defined by startDate and finishDate ///
         const busy = await Booking.findAll({
             where: {
                 stateBooking: {
@@ -36,8 +37,10 @@ const getAvailableVehiclesHandler = async (query) => {
             attributes: ['VehicleId'],
         })
         let busyCars = busy.map(item => item.VehicleId).filter(item => item !== null)
+        /////////////////////////////
 
-        // setup where for DDBB query
+
+        // setup where for database query ////////
         const where = {
             domain: {
                 [Op.notIn]: busyCars
@@ -74,17 +77,21 @@ const getAvailableVehiclesHandler = async (query) => {
                 [Op.lte] : Number(passengersMax)
             }
         }
+        ////////////////
 
+        // setup order for database query ////
         const order = [[(orderBy) ? orderBy : 'pricePerDay', (direction) ? direction : 'ASC']]
+        ////////////////////
 
+        // make query for Vehicles that match filter criteria and are not in busyCars array
         const availableVehicles = await Vehicle.findAll({
             where,
             order,
             attributes: ['id', 'domain', 'brand', 'model', 'type', 'passengers', 'transmission', 'fuel', 'pricePerDay', 'image']
         })
-
+        ///////////////////
         
-        // reformatear esto en utils
+        // filter results so that's there is only one Vehicle of each (model => transmission => fuel => price) combination ////
         const oneOfEachType = []
         availableVehicles.forEach(availableCar => {
             const { domain, brand, model, type, passengers, transmission, fuel, pricePerDay, image } = availableCar
@@ -96,8 +103,9 @@ const getAvailableVehiclesHandler = async (query) => {
             }
         })
         const results = oneOfEachType;
-        ///////////
+        ////////////////////////
 
+        // set pagination variables //////////
         if (limit) { 
             limit = Number(limit) 
         } else {
@@ -131,7 +139,9 @@ const getAvailableVehiclesHandler = async (query) => {
 
         const next = (page === totalPages) ? null : nextString
         const prev = (page === 1) ? null : prevString  
+        ///////////////////////////////////////
 
+        // configure response /////////
         const response = {
             currentPage: page,
             totalPages,
