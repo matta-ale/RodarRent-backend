@@ -44,6 +44,7 @@ const {
   deletePaymentByIdLogicValidate,
 } = require("../middlewares/pay/deletePaymentByIdLogicValidate");
 const { updateBooking } = require("../controllers/bookings/updateBooking");
+const { updateLocation } = require("../controllers/locations/updateLocation");
 
 const router = Router();
 
@@ -84,5 +85,6 @@ router.post("/locations", createLocation);
 router.get("/locations/:id", getLocationById);
 router.get("/available", getAllAvailable);
 router.put("/bookings/:id", updateBooking);
+router.put("/locations/:id", updateLocation);
 
 module.exports = router;
