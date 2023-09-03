@@ -6,7 +6,11 @@ const deleteCustomerById = async (req, res) => {
     const deletedCustomer = await deleteCustomerByIdHandler(id);
     res.status(200).send(`Customer with id ${id} has been deleted`);
   } catch (error) {
-    res.status(error.statusCode).json({ error: error.message });
+    if(error.statusCode) {
+      res.status(error.statusCode).json({ error: error.message });
+    } else {
+      res.status(500).json({ error: error.message });
+    }
   }
 };
 
