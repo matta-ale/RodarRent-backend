@@ -1,6 +1,4 @@
-const {
-  getPaymentByIdHandler,
-} = require('../../handlers/pay/getPaymentByIdHandler');
+const getPaymentByIdHandler = require('../../handlers/pay/getPaymentByIdHandler');
 
 async function getPaymentById(req, res) {
   const { id } = req.params;
@@ -16,6 +14,4 @@ async function getPaymentById(req, res) {
   }
 }
 
-module.exports = {
-  getPaymentById,
-};
+module.exports = getPaymentById;

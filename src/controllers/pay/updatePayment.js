@@ -1,6 +1,4 @@
-const {
-  updatePaymentHandler,
-} = require('../../handlers/pay/updatePaymentHandler');
+const updatePaymentHandler = require('../../handlers/pay/updatePaymentHandler');
 
 async function updatePayment(req, res) {
   const result = await updatePaymentHandler(req.params.id, req.body);
@@ -11,4 +9,4 @@ async function updatePayment(req, res) {
   }
 }
 
-module.exports = { updatePayment };
+module.exports = updatePayment;
