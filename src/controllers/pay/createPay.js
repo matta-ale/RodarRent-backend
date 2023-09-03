@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-const { createPayHandler } = require('../../handlers/pay/createPayHandler');
+const createPayHandler = require('../../handlers/pay/createPayHandler');
 const CustomError = require('../../utils/customError');
 
 async function createPay(req, res) {
@@ -14,6 +14,4 @@ async function createPay(req, res) {
     }
   }
 }
-module.exports = {
-  createPay,
-};
+module.exports = createPay;

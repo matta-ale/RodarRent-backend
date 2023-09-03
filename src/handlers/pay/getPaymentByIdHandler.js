@@ -13,6 +13,4 @@ async function getPaymentByIdHandler(id) {
   return payment;
 }
 
-module.exports = {
-  getPaymentByIdHandler,
-};
+module.exports = getPaymentByIdHandler;

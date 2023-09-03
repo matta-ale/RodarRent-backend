@@ -22,6 +22,4 @@ async function createPayHandler({ id, amount, date, method, status }) {
   }
 }
 
-module.exports = {
-  createPayHandler,
-};
+module.exports = createPayHandler;

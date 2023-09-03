@@ -10,14 +10,10 @@ const deleteCustomerById = require("../controllers/customers/deleteCustomerById"
 const createCustomerValidation = require("../middlewares/createCustomerValidation");
 const getCustomerByIdValidation = require("../middlewares/getCustomerByIdValidation");
 const deleteCustomerByIdValidation = require("../middlewares/deleteCustomerByIdValidation");
-const postPayValidate = require("../middlewares/pay/postPayValidate");
 const createVehicles = require("../controllers/vehicles/createVehicles");
 const postVehiclesValidate = require("../middlewares/postVehiclesValidate");
 const postBookingValidate = require("../middlewares/postBookingValidate");
 const createBooking = require("../controllers/bookings/createBooking");
-const { createPay } = require("../controllers/pay/createPay");
-const { getAllPayments } = require("../controllers/pay/getAllPayments");
-const { getPaymentById } = require("../controllers/pay/getPaymentById");
 const { getAllBookings } = require("../controllers/bookings/getAllBookings");
 const getVehicleById = require("../controllers/vehicles/getVehicleById");
 const getAllVehicles = require("../controllers/vehicles/getAllVehicles");
@@ -27,31 +23,18 @@ const updateVehicle = require("../controllers/vehicles/updateVehicle");
 const getAllAvailable = require("../controllers/vehicles/getAllAvailable");
 const { getLocationById } = require("../controllers/locations/getLocationById");
 const { getBookingById } = require("../controllers/bookings/getBookingById");
-const {
-  getPaymentsByDateRange,
-} = require("../controllers/pay/getPaymentsByDateRange");
-const {
-  getPaymentsByDateRangeValidate,
-} = require("../middlewares/pay/getPaymentsByDateRangeValidate");
-const { updatePayment } = require("../controllers/pay/updatePayment");
-const {
-  updatePaymentValidate,
-} = require("../middlewares/pay/updatePaymentValidate");
-const {
-  deletePaymentByIdLogic,
-} = require("../controllers/pay/deletePaymentByIdLogic");
-const {
-  deletePaymentByIdLogicValidate,
-} = require("../middlewares/pay/deletePaymentByIdLogicValidate");
 const { updateBooking } = require("../controllers/bookings/updateBooking");
+const { updateLocation } = require("../controllers/locations/updateLocation");
+const {
+  deleteBookingValidation,
+} = require("../middlewares/deleteBookingValidation");
+const { deleteBooking } = require("../controllers/bookings/deleteBooking");
 
 const router = Router();
-
 router.get("/hc", (req, res) => {
   // healthcheck
   res.status(200).send("Server up");
 });
-
 router.post("/vehicles", postVehiclesValidate, createVehicles);
 router.get("/vehicles/:id", getVehicleById);
 router.get("/vehicles", getAllVehicles);
@@ -67,20 +50,6 @@ router.delete(
   deleteCustomerByIdValidation,
   deleteCustomerById
 );
-router.post("/payments", postPayValidate, createPay);
-router.get("/payments", getAllPayments);
-router.get("/payments/:id", getPaymentById);
-router.get(
-  "/payment/date",
-  getPaymentsByDateRangeValidate,
-  getPaymentsByDateRange
-);
-router.put("/payments/:id", updatePaymentValidate, updatePayment);
-router.delete(
-  "/payments/:id",
-  deletePaymentByIdLogicValidate,
-  deletePaymentByIdLogic
-);
 router.get("/bookings", getAllBookings);
 router.post("/bookings", postBookingValidate, createBooking);
 router.get("/bookings/:id", getBookingById);
@@ -89,5 +58,6 @@ router.post("/locations", createLocation);
 router.get("/locations/:id", getLocationById);
 router.get("/available", getAllAvailable);
 router.put("/bookings/:id", updateBooking);
-
+router.put("/locations/:id", updateLocation);
+router.delete("/bookings/:id", deleteBookingValidation, deleteBooking);
 module.exports = router;

@@ -6,4 +6,4 @@ const deletePaymentByIdLogicValidate = (req, res, next) => {
   next();
 };
 
-module.exports = { deletePaymentByIdLogicValidate };
+module.exports = deletePaymentByIdLogicValidate;

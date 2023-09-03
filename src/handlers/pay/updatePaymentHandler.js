@@ -16,4 +16,4 @@ async function updatePaymentHandler(id, data) {
   return { payment, status: 200 };
 }
 
-module.exports = { updatePaymentHandler };
+module.exports = updatePaymentHandler;
