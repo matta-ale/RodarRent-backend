@@ -8,7 +8,7 @@ const getCustomerByIdHandler = async (id) => {
     if(!customer) throw new CustomError(`There's no customer matching id ${id}`,404)
     return customer
   } catch (error) {
-    throw error;
+    throw new CustomError(error.message,500);
   }
 };
 

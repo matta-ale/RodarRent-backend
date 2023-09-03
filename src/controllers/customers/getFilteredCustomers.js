@@ -6,7 +6,7 @@ const getFilteredCustomers = async (req, res) => {
     const filteredCustomers = await getFilteredCustomersHandler(data);
     res.status(200).json(filteredCustomers);
   } catch (error) {
-    res.status(error.statusCode?error.statusCode:500).json({ error: error.message });
+    res.status(error.statusCode).json({ error: error.message });
   }
 };
 

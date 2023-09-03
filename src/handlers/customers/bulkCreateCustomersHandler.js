@@ -6,7 +6,7 @@ const bulkCreateCustomersHandler = async (data) => {
       const customers = await Customer.bulkCreate(data);
         return customers;
     } catch (error) {
-      throw error;
+      throw new CustomError(error.message,500);
     }
 };
 

@@ -6,7 +6,7 @@ const bulkCreateCustomers = async (req, res) => {
     const customer = await bulkCreateCustomersHandler(data);
     res.status(200).json(customer);
   } catch (error) {
-    res.status(error).json({ error: error.message });
+    res.status(error.statusCode).json({ error: error.message });
   }
 };
 
