@@ -7,7 +7,7 @@ const carTypes = [
         type: 'SUV',
         passengers: 7,
         pricePerDay: 180.00,
-        image: "https://w7.pngwing.com/pngs/1003/115/png-transparent-hyundai-motor-company-sport-utility-vehicle-hyundai-tucson-car-suv-cars-thumbnail.png"
+        image: "https://th.bing.com/th/id/R.5ed33ef2a931b94674e48544ea9dfa0d?rik=jf2PHaELGho%2bcA&pid=ImgRaw&r=0"
     },
     {
         brand: 'Mercedes Benz',
@@ -15,7 +15,7 @@ const carTypes = [
         type: 'SUV',
         passengers: 8,
         pricePerDay: 210.00,
-        image: "https://w7.pngwing.com/pngs/38/708/png-transparent-car-mercedes-car-love-compact-car-vehicle-thumbnail.png"
+        image: "https://res.cloudinary.com/daiztctac/image/upload/v1693829158/g2f6vvrw1d86tqjonr70.png"
     },
     {
         brand: 'Mercedes Benz',
@@ -23,7 +23,7 @@ const carTypes = [
         type: 'sedan',
         passengers: 4,
         pricePerDay: 205.00,
-        image: "https://w7.pngwing.com/pngs/994/935/png-transparent-mercedes-benz-a-class-car-mercedes-benz-e-class-mercedes-benz-r-class-mercedes-compact-car-sedan-car-thumbnail.png"
+        image: "https://res.cloudinary.com/daiztctac/image/upload/v1693828820/svlnibspwjirmfgg1cgc.png"
     },
     {
         brand: 'Toyota',
@@ -31,7 +31,7 @@ const carTypes = [
         type: 'pickup',
         passengers: 4,
         pricePerDay: 180.00,
-        image: "https://w7.pngwing.com/pngs/1011/424/png-transparent-toyota-hilux-car-pickup-truck-ute-toyota-truck-car-pickup-truck-thumbnail.png"
+        image: "https://res.cloudinary.com/daiztctac/image/upload/v1693828678/apuuaeahl2oi13o8yojk.png"
     },
     {
         brand: 'Chevrolet',
@@ -39,7 +39,7 @@ const carTypes = [
         type: 'sport',
         passengers: 2,
         pricePerDay: 240.00,
-        image: "https://w7.pngwing.com/pngs/637/293/png-transparent-chevrolet-camaro-car-general-motors-chevrolet-tahoe-yellow-car-car-performance-car-vehicle-thumbnail.png"
+        image: "https://freepngimg.com/thumb/chevrolet/32550-4-chevrolet-camaro-transparent.png"
     },
     {
         brand: 'Jeep',
@@ -47,7 +47,7 @@ const carTypes = [
         type: 'SUV',
         passengers: 6,
         pricePerDay: 205.00,
-        image: "https://w7.pngwing.com/pngs/295/665/png-transparent-black-jeep-grand-cherokee-suv-2017-jeep-grand-cherokee-2018-jeep-grand-cherokee-trackhawk-sport-utility-vehicle-black-jeep-grand-cherokee-car-vehicle-transport-rim-thumbnail.png"
+        image: "https://th.bing.com/th/id/R.bf5fd5a4b04fe359494885e5cfbbebc1?rik=1E4hdPBrMfy4mg&pid=ImgRaw&r=0"
     },
     {
         brand: 'Chevrolet',
@@ -55,7 +55,7 @@ const carTypes = [
         type: 'compact',
         passengers: 4,
         pricePerDay: 142.00,
-        image: "https://w7.pngwing.com/pngs/131/765/png-transparent-hyundai-car-chevrolet-prisma-sport-utility-vehicle-hyundai-compact-car-sedan-car-thumbnail.png"
+        image: "https://res.cloudinary.com/daiztctac/image/upload/v1693828049/qpdewveorbpdwjor1caw.png"
     },
     {
         brand: 'Volkswagen',
@@ -63,7 +63,7 @@ const carTypes = [
         type: 'compact',
         passengers: 4,
         pricePerDay: 155.00,
-        image: "https://w7.pngwing.com/pngs/522/870/png-transparent-volkswagen-gol-car-vw-saveiro-volkswagen-up-volkswagen-compact-car-sedan-car-thumbnail.png"
+        image: "https://freewayservicos.com/wp-content/uploads/2016/08/3.png"
     },
     {
         brand: 'Honda',
@@ -71,7 +71,7 @@ const carTypes = [
         type: 'sedan',
         passengers: 4,
         pricePerDay: 160.00,
-        image: "https://w7.pngwing.com/pngs/801/997/png-transparent-2017-honda-civic-2018-honda-civic-honda-city-honda-today-honda-compact-car-glass-sedan-thumbnail.png"
+        image: "https://th.bing.com/th/id/R.e71327056a0b3fd72772d82185a7161c?rik=fh9bNZmRZZFA8Q&pid=ImgRaw&r=0"
     },
     {
         brand: 'Volkswagen',
@@ -79,7 +79,7 @@ const carTypes = [
         type: 'compact',
         passengers: 4,
         pricePerDay: 158.00,
-        image: "https://w7.pngwing.com/pngs/74/513/png-transparent-volkswagen-polo-car-renault-symbol-price-volkswagen-compact-car-sedan-car-thumbnail.png"
+        image: "https://res.cloudinary.com/daiztctac/image/upload/v1693827462/tscc0cmxzezedxggxkvy.png"
     },
     {
         brand: 'Tesla',
@@ -87,7 +87,7 @@ const carTypes = [
         type: 'sedan',
         passengers: 4,
         pricePerDay: 260.00,
-        image: "https://w7.pngwing.com/pngs/113/493/png-transparent-2018-tesla-model-s-2017-tesla-model-s-tesla-model-3-2018-tesla-model-x-tesla-compact-car-sedan-car-thumbnail.png"
+        image: "https://www.vippng.com/png/full/44-440423_model-png.png"
     },
     {
         brand: 'Fiat',
@@ -95,7 +95,7 @@ const carTypes = [
         type: 'compact',
         passengers: 4,
         pricePerDay: 136.00,
-        image: "https://w7.pngwing.com/pngs/756/875/png-transparent-fiat-automobiles-car-fiat-strada-fiat-argo-fiat-mobi-car-compact-car-sedan-car-thumbnail.png"
+        image: "https://motormania.com.mx/wp-content/uploads/2021/08/fiat-trekking-2021-cover_rojo.png"
     },
     {
         brand: 'Mercedes Benz',
@@ -103,7 +103,7 @@ const carTypes = [
         type: 'sedan',
         passengers: 4,
         pricePerDay: 194.00,
-        image: "https://w7.pngwing.com/pngs/223/220/png-transparent-mercedes-benz-e-class-luxury-vehicle-car-2014-mercedes-benz-s-class-mercedes-compact-car-sedan-car-thumbnail.png"
+        image: "https://www.pikpng.com/pngl/b/31-313751_2017-mercedes-benz-s-class-s550-sedan-cover.png"
     },
     {
         brand: 'Ford',
@@ -111,7 +111,7 @@ const carTypes = [
         type: 'compact',
         passengers: 4,
         pricePerDay: 130.00,
-        image: "https://w7.pngwing.com/pngs/429/827/png-transparent-ford-ka-ford-ranger-car-ford-focus-ford-compact-car-sedan-car-thumbnail.png"
+        image: "https://res.cloudinary.com/daiztctac/image/upload/v1693826529/vrq2ujlylie6gecixr0b.png"
     },
     {
         brand: 'Audi',
@@ -119,7 +119,7 @@ const carTypes = [
         type: 'sedan',
         passengers: 4,
         pricePerDay: 212.00,
-        image: "https://w7.pngwing.com/pngs/884/336/png-transparent-audi-car-icon-audi-compact-car-sedan-image-file-formats-thumbnail.png"
+        image: "https://res.cloudinary.com/daiztctac/image/upload/v1693826124/ipctogghnbilgx4yuwau.png"
     },
     {
         brand: 'Ford',
@@ -127,7 +127,7 @@ const carTypes = [
         type: 'sport',
         passengers: 4,
         pricePerDay: 238.00,
-        image: "https://w7.pngwing.com/pngs/200/815/png-transparent-red-ford-mustang-coupe-2017-ford-mustang-2015-ford-mustang-2018-ford-mustang-car-ford-mustang-red-car-computer-wallpaper-car-performance-car-thumbnail.png"
+        image: "https://res.cloudinary.com/daiztctac/image/upload/v1693825965/athm36fjdzbjjut6t9r1.png"
     },
     {
         brand: 'Mercedes Benz',
@@ -135,7 +135,7 @@ const carTypes = [
         type: 'sedan',
         passengers: 4,
         pricePerDay: 198.00,
-        image: "https://w7.pngwing.com/pngs/951/225/png-transparent-2017-mercedes-benz-c-class-car-mercedes-benz-e-class-mercedes-benz-c-300-at-mercedes-compact-car-sedan-convertible-thumbnail.png"
+        image: "https://www.motortrend.com/uploads/sites/10/2019/10/2020-mercedes-benz-c-class-c300-sedan-angular-front.png"
     },
     {
         brand: 'Volkswagen',
@@ -143,7 +143,7 @@ const carTypes = [
         type: 'sedan',
         passengers: 4,
         pricePerDay: 170.00,
-        image: "https://w7.pngwing.com/pngs/997/266/png-transparent-2018-volkswagen-passat-2016-volkswagen-passat-1-8t-se-car-volkswagen-jetta-2018-compact-car-sedan-volkswagen-thumbnail.png"
+        image: "https://www.motortrend.com/uploads/sites/10/2016/10/2017-volkswagen-passat-sel-premium-auto-sedan-angular-front.png"
     },
     {
         brand: 'Audi',
@@ -151,7 +151,7 @@ const carTypes = [
         type: 'sedan',
         passengers: 4,
         pricePerDay: 175.00,
-        image: "https://w7.pngwing.com/pngs/54/324/png-transparent-2018-audi-a6-mid-size-car-2017-audi-a4-audi-compact-car-sedan-car-thumbnail.png"
+        image: "https://res.cloudinary.com/daiztctac/image/upload/v1693825167/p4gyfhmy4cpikskrhsvs.png"
     },
     {
         brand: 'Nissan',
@@ -159,7 +159,7 @@ const carTypes = [
         type: 'compact',
         passengers: 4,
         pricePerDay: 152.00,
-        image: "https://w7.pngwing.com/pngs/1017/990/png-transparent-nissan-micra-car-2018-nissan-kicks-2018-nissan-sentra-nissan-compact-car-car-vehicle-thumbnail.png"
+        image: "https://inventory-dmg.assets-cdk.com/ChromeColorMatch/us/TRANSPARENT_cc_2020NIS260017_01_1280_XAH.png"
     },
     {
         brand: 'Toyota',
@@ -167,15 +167,7 @@ const carTypes = [
         type: 'compact',
         passengers: 4,
         pricePerDay: 140.00,
-        image: "https://w7.pngwing.com/pngs/451/127/png-transparent-2018-toyota-yaris-subcompact-car-2015-toyota-yaris-toyota-compact-car-sedan-car-thumbnail.png"
-    },
-    {
-        brand: 'Toyota',
-        model: 'Yaris',
-        type: 'compact',
-        passengers: 4,
-        pricePerDay: 140.00,
-        image: "https://w7.pngwing.com/pngs/451/127/png-transparent-2018-toyota-yaris-subcompact-car-2015-toyota-yaris-toyota-compact-car-sedan-car-thumbnail.png"
+        image: "https://www.motortrend.com/uploads/sites/10/2016/12/2017-toyota-yaris-se-5-door-hatchback-angular-front.png"
     },
 ]
 

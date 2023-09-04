@@ -12,6 +12,8 @@ const getAvailableVehiclesHandler = async (query) => {
             finishDate, 
             orderBy, 
             direction, 
+            brand,
+            model,
             type, 
             transmission, 
             fuel, 
@@ -48,6 +50,8 @@ const getAvailableVehiclesHandler = async (query) => {
         }
         if (type) { where.type = type }
         if (transmission) { where.transmission = transmission }
+        if (brand) { where.brand = brand }
+        if (model) { where.model = model }
         if (fuel) { where.fuel = fuel }
         if (pricePerDayMin && pricePerDayMax) {
             where.pricePerDay = {
