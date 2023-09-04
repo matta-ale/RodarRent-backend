@@ -1,4 +1,5 @@
 const { faker } = require('@faker-js/faker');
+const axios = require('axios')
 
 const carTypes = [
     {
@@ -55,7 +56,7 @@ const carTypes = [
         type: 'compact',
         passengers: 4,
         pricePerDay: 142.00,
-        image: "https://res.cloudinary.com/daiztctac/image/upload/v1693828049/qpdewveorbpdwjor1caw.png"
+        image: "https://res.cloudinary.com/daiztctac/image/upload/v1693835070/bjvci3s6cyqxmsexoptr.png"
     },
     {
         brand: 'Volkswagen',
@@ -175,4 +176,31 @@ const years = [2021, 2022, 2023]
 const transmissions = ['manual', 'automatic']
 const fuels = ['gas', 'diesel']
 
-const loadCars = ''
+const loadCars = async (nCars) => {
+    const load = []
+    while (load.length < nCars) {
+        const carTypeIndex = Math.floor(Math.random()*carTypes.length)
+        const newCar = { ...carTypes[carTypeIndex] }
+        newCar.domain = faker.vehicle.vrm()
+        newCar.year = years[Math.floor(Math.random()*years.length)]
+        newCar.transmission = transmissions[Math.floor(Math.random()*transmissions.length)]
+        if (newCar.brand === 'Tesla') {
+            newCar.fuel = 'electric'
+        } else if (newCar.model === 'Camaro' || newCar.model === 'Mustang') {
+            newCar.fuel = 'gas'
+        } else {
+            newCar.fuel = fuels[Math.floor(Math.random()*fuels.length)]
+        }
+        newCar.availability = true
+        load.push(newCar)
+    }
+    const { data } = await axios.post('http://localhost:3001/vehicles', load)
+    if (data.length) {
+        console.log(data[0])
+    }
+}
+// execution of load(nCars)
+loadCars(200)
+////////////
+
+//module.exports = loadCars;

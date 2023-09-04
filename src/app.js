@@ -6,6 +6,7 @@ const morgan = require('morgan');
 const routes = require('./routes/index.js');
 const paymentsRouter = require('./routes/pay/paymentsRouter');
 const customersRouter = require('./routes/customers/customersRouter.js');
+const vehiclesRouter = require('./routes/vehicles/vehiclesRouter.js');
 
 // require('./db.js');
 
@@ -32,6 +33,7 @@ server.use((req, res, next) => {
 server.use('/', routes);
 server.use('/', paymentsRouter);
 server.use('/', customersRouter);
+server.use('/', vehiclesRouter);
 
 // Error catching endware.
 server.use((err, req, res, next) => {
