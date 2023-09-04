@@ -12,6 +12,4 @@ const getBookingById = async (req, res) => {
   }
 };
 
-module.exports = {
-  getBookingById,
-};
+module.exports = getBookingById;

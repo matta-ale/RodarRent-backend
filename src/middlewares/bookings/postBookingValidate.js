@@ -1,4 +1,4 @@
-const { Customer, Vehicle } = require("../db");
+const { Customer, Vehicle } = require("../../db");
 
 const postBookingValidate = async (req, res, next) => {
   const {

@@ -11,6 +11,4 @@ const getAllBookings = async (req, res) => {
   }
 };
 
-module.exports = {
-  getAllBookings,
-};
+module.exports = getAllBookings;
