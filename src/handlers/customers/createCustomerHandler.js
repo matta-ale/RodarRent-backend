@@ -13,6 +13,7 @@ const createCustomerHandler = async (data) => {
     zipCode,
     phoneNumber,
     email,
+    password,
   } = data;
   
     try {
@@ -28,6 +29,7 @@ const createCustomerHandler = async (data) => {
           zipCode,
           phoneNumber,
           email,
+          password,
         },
         // include: [
         //   {
