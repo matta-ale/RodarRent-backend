@@ -13,6 +13,4 @@ const updateLocation = async (req, res) => {
   }
 };
 
-module.exports = {
-  updateLocation,
-};
+module.exports = updateLocation;

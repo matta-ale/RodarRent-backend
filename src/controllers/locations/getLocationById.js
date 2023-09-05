@@ -12,6 +12,4 @@ const getLocationById = async (req, res) => {
   }
 };
 
-module.exports = {
-  getLocationById,
-};
+module.exports = getLocationById;
