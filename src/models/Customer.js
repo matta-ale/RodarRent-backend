@@ -1,4 +1,6 @@
 const { Sequelize, DataTypes } = require('sequelize');
+const bcrypt = require('bcrypt');
+
 // Exportamos una funcion que define el modelo
 // Luego le inyectamos la conexion a sequelize.
 
@@ -69,6 +71,11 @@ module.exports = (sequelize) => {
           }
         }
       },
+
+      password: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       
       isActive: {
         type: DataTypes.BOOLEAN,
@@ -78,3 +85,4 @@ module.exports = (sequelize) => {
     { timestamps: false }
   );
 };
+;

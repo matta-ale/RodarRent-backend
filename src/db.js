@@ -10,6 +10,7 @@ require("dotenv").config();
 const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
+const bcrypt = require('bcrypt');
 
 const { DB_URL, DB_SSL_ENABLED, DB_SSL_REJECT_UNAUTHORIZED } = process.env;
 
@@ -73,6 +74,11 @@ Booking.belongsTo(Location, {
 });
 Location.hasMany(Booking, { foreignKey: "pickUpLocationId" });
 Location.hasMany(Booking, { foreignKey: "returnLocationId" });
+
+//defino método para hashear password de Customer
+Customer.prototype.comparePassword = function (password) {
+  return bcrypt.compareSync(password, this.password);
+}
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
