@@ -75,11 +75,6 @@ module.exports = (sequelize) => {
       password: {
         type: DataTypes.STRING,
         allowNull: false,
-        set(password) {
-          const saltRounds = 10;
-          const hashedPassword = bcrypt.hashSync(password, saltRounds);
-          this.setDataValue('password', hashedPassword);
-        },
       },
       
       isActive: {

@@ -1,5 +1,6 @@
 const { Customer } = require('../../db');
 const CustomError = require('../../utils/customError');
+const bcrypt = require('bcrypt');
 
 const createCustomerHandler = async (data) => {
   const {
@@ -15,7 +16,6 @@ const createCustomerHandler = async (data) => {
     email,
     password,
   } = data;
-  
     try {
       const [customer, created] = await Customer.findOrCreate({
         where: { personalId },

@@ -2,6 +2,7 @@ const { Router } = require('express');
 const passport = require('passport')
 
 const {
+  attemptLogin,
   createCustomer,
   bulkCreateCustomers,
   getAllCustomers,
@@ -24,6 +25,7 @@ router.post("/customers", createCustomerValidation, createCustomer);
 router.get("/customers", getAllCustomers);
 router.get("/customers/filter", getFilteredCustomers);
 router.get("/customers/:id", getCustomerByIdValidation, getCustomerById);
+router.post("/customers/login", attemptLogin);
 router.put("/customers", createCustomerValidation, updateCustomer);
 router.delete("/customers/:id",deleteCustomerByIdValidation,deleteCustomerById);
 
