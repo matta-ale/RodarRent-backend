@@ -7,6 +7,7 @@ const {
   getPaymentsByDateRange,
   updatePayment,
   deletePaymentByIdLogic,
+  getPaymentsInDateOrder,
 } = require('../../controllers/pay');
 
 const {
@@ -26,6 +27,8 @@ router.get('/hc', (req, res) => {
 router.post('/payments', postPayValidate, createPay);
 
 router.get('/payments', getAllPayments);
+
+router.get('/payment', getPaymentsInDateOrder);
 
 router.get('/payments/:id', getPaymentById);
 

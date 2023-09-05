@@ -5,6 +5,4 @@ const deleteBookingValidation = (req, res, next) => {
   next();
 };
 
-module.exports = {
-  deleteBookingValidation,
-};
+module.exports = deleteBookingValidation;

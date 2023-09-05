@@ -13,6 +13,4 @@ const updateBooking = async (req, res) => {
   }
 };
 
-module.exports = {
-  updateBooking,
-};
+module.exports = updateBooking;

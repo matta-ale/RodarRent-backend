@@ -16,6 +16,4 @@ const deleteBooking = async (req, res) => {
   }
 };
 
-module.exports = {
-  deleteBooking,
-};
+module.exports = deleteBooking;

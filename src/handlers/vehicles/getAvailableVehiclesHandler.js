@@ -12,6 +12,8 @@ const getAvailableVehiclesHandler = async (query) => {
             finishDate, 
             orderBy, 
             direction, 
+            brand,
+            model,
             type, 
             transmission, 
             fuel, 
@@ -20,6 +22,17 @@ const getAvailableVehiclesHandler = async (query) => {
             passengersMin,
             passengersMax 
         } = query 
+
+        // validate dates
+        if (!startDate || !finishDate) {
+            throw new CustomError('startDate and finishDate are required query parameters', 400)
+        }
+
+        const regexPatternForDates = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/
+        if (!regexPatternForDates.test(startDate) || !regexPatternForDates.test(finishDate)) {
+            throw new CustomError('startDate and finishDate must be in the format AAAA-MM-DD', 400)
+        }
+        /////////////
 
         // make query for Bookings intersecting the desired period defined by startDate and finishDate ///
         const busy = await Booking.findAll({
@@ -39,7 +52,6 @@ const getAvailableVehiclesHandler = async (query) => {
         let busyCars = busy.map(item => item.VehicleId).filter(item => item !== null)
         /////////////////////////////
 
-
         // setup where for database query ////////
         const where = {
             domain: {
@@ -48,6 +60,8 @@ const getAvailableVehiclesHandler = async (query) => {
         }
         if (type) { where.type = type }
         if (transmission) { where.transmission = transmission }
+        if (brand) { where.brand = brand }
+        if (model) { where.model = model }
         if (fuel) { where.fuel = fuel }
         if (pricePerDayMin && pricePerDayMax) {
             where.pricePerDay = {
