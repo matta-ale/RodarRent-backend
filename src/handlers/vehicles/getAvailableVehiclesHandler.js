@@ -57,7 +57,9 @@ const getAvailableVehiclesHandler = async (query) => {
         }
 
         // setup where for database query ////////
-        const where = {}
+        const where = {
+            isActive: true
+        }
         if (busyCars.length) { where.domain = { [Op.notIn]: busyCars } }
         if (type) { where.type = type }
         if (transmission) { where.transmission = transmission }

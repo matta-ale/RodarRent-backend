@@ -47,9 +47,9 @@ module.exports = (sequelize) => {
       type: DataTypes.DECIMAL,
       allowNull: false,
     },
-    availability: { // need to change for isActive and default: true
+    isActive: {
       type: DataTypes.BOOLEAN,
-      defaultValue: false,
+      defaultValue: true,
     },
     image: {
       type: DataTypes.STRING, // isURL
