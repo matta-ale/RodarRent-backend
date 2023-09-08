@@ -1,39 +1,43 @@
 //acá creo mi server. en index.js conecto sequelize con el server
-const express = require('express');
-const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
-const morgan = require('morgan');
-const paymentsRouter = require('./routes/pay/paymentsRouter');
-const customersRouter = require('./routes/customers/customersRouter.js');
-const vehiclesRouter = require('./routes/vehicles/vehiclesRouter.js');
-const bookingsRouter = require('./routes/bookings/bookingsRouter.js');
-const locationsRouter = require('./routes/locations/locationsRouter.js');
-const cookieSession = require('cookie-session')
-const passport = require('passport')
-const cors = require('cors')
-const passportSetup = require('../passport.js')
+const express = require("express");
+const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
+const morgan = require("morgan");
+const paymentsRouter = require("./routes/pay/paymentsRouter");
+const customersRouter = require("./routes/customers/customersRouter.js");
+const vehiclesRouter = require("./routes/vehicles/vehiclesRouter.js");
+const bookingsRouter = require("./routes/bookings/bookingsRouter.js");
+const locationsRouter = require("./routes/locations/locationsRouter.js");
+const cookieSession = require("cookie-session");
+const passport = require("passport");
+const cors = require("cors");
+const passportSetup = require("../passport.js");
+// aqui puse lo nuevo
+const mercadoPagoRouter = require("./routes/mercadoPagoRouter");
 
 const server = express();
-server.name = 'API';
+server.name = "API";
 
-server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
-server.use(bodyParser.json({ limit: '50mb' }));
-server.use(cookieSession({
-  name: 'session',
-  keys: ['cyberwolve'],
-  maxAge: 24*60*60*100,
-}));
+server.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
+server.use(bodyParser.json({ limit: "50mb" }));
+server.use(
+  cookieSession({
+    name: "session",
+    keys: ["cyberwolve"],
+    maxAge: 24 * 60 * 60 * 100,
+  })
+);
 server.use(cookieParser());
 server.use(passport.initialize());
 server.use(passport.session());
 server.use(
   cors({
-    origin:'http://127.0.0.1:5173',
-    methods: 'GET,POST,PUT,DELETE',
-    credentials:true,
+    origin: "http://127.0.0.1:5173",
+    methods: "GET,POST,PUT,DELETE",
+    credentials: true,
   })
-)
-server.use(morgan('dev'));
+);
+server.use(morgan("dev"));
 
 server.use((req, res, next) => {
   // res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // update to match the domain you will make the request from
@@ -53,6 +57,8 @@ server.use("/", customersRouter);
 server.use("/", vehiclesRouter);
 server.use("/", bookingsRouter);
 server.use("/", locationsRouter);
+//aca puse otra cosa nueva
+server.use("/", mercadoPagoRouter);
 
 // Error catching endware.
 server.use((err, req, res, next) => {
