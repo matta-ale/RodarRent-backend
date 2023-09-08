@@ -2,7 +2,7 @@ const { Booking } = require("../../db");
 const { Op } = require("sequelize");
 const CustomError = require("../../utils/customError");
 
-const getFilteredBookingsHandler = async (req, res) => {
+const getFilteredBookingsHandler = async (data, res) => {
   try {
     const {
       stateBooking,
@@ -14,11 +14,11 @@ const getFilteredBookingsHandler = async (req, res) => {
       orderVar,
       orderMode,
       limit,
-    } = req.query;
+    } = data;
     //deberiamos agregar desde algun lado el id del usuario para poder agregarlo a filter Conditions
     const filterConditions = [];
 
-    if (state) {
+    if (stateBooking) {
       filterConditions.push({ stateBooking: stateBooking });
     }
     if (startDate && finishDate) {
@@ -59,6 +59,4 @@ const getFilteredBookingsHandler = async (req, res) => {
     throw new CustomError(error.message, 500);
   }
 };
-module.exports = {
-  getFilteredBookingsHandler,
-};
+module.exports = getFilteredBookingsHandler;
