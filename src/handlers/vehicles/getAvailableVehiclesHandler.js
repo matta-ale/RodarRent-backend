@@ -19,6 +19,7 @@ const getAvailableVehiclesHandler = async (query) => {
             fuel, 
             pricePerDayMin, 
             pricePerDayMax,
+            passengers,
             passengersMin,
             passengersMax 
         } = query 
@@ -66,6 +67,7 @@ const getAvailableVehiclesHandler = async (query) => {
         if (brand) { where.brand = brand }
         if (model) { where.model = model }
         if (fuel) { where.fuel = fuel }
+        if (passengers) { where.passengers = passengers }
         if (pricePerDayMin && pricePerDayMax) {
             where.pricePerDay = {
                 [Op.gte] : Number(pricePerDayMin),
@@ -163,7 +165,7 @@ const getAvailableVehiclesHandler = async (query) => {
         const models = Array.from(new Set(results.map(car => car.model)));
         const transmissions = Array.from(new Set(results.map(car => car.transmission)));
         const fuelTypes = Array.from(new Set(results.map(car => car.fuel)));
-        const passengers = Array.from(new Set(results.map(car => car.passengers)));
+        const passengersCapacities = Array.from(new Set(results.map(car => car.passengers))).sort();
         /////////////////////////
 
         // configure response /////////
@@ -174,7 +176,7 @@ const getAvailableVehiclesHandler = async (query) => {
             prev,
             resultsCount: results.length,
             results: results.slice(showFrom, showTo),
-            availableFilterOptions: { brands, models, transmissions, fuelTypes, passengers }
+            availableFilterOptions: { brands, models, transmissions, fuelTypes, passengers: passengersCapacities }
         }
 
         return response
