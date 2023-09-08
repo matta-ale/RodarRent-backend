@@ -47,7 +47,7 @@ module.exports = (sequelize) => {
       type: DataTypes.DECIMAL,
       allowNull: false,
     },
-    availability: {
+    availability: { // need to change for isActive and default: true
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
