@@ -68,7 +68,7 @@ const carTypes = [
         type: 'compact',
         passengers: 4,
         pricePerDay: 142.00,
-        image: "'https://res.cloudinary.com/daiztctac/image/upload/v1694022961/jydus2voxms8gcwjfoef.webp'",
+        image: 'https://res.cloudinary.com/daiztctac/image/upload/v1694022961/jydus2voxms8gcwjfoef.webp',
         transmission: 'manual',
         fuel: 'gas'
     },
@@ -233,7 +233,7 @@ const loadCars = async (nCars) => {
         // } else {
         //     newCar.fuel = fuels[Math.floor(Math.random()*fuels.length)]
         // }
-        newCar.availability = true
+        //newCar.availability = true
         load.push(newCar)
     }
     const { data } = await axios.post('http://localhost:3001/vehicles', load)
