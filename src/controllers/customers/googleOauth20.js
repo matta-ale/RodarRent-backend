@@ -1,12 +1,14 @@
-const passport = require('passport')
+const passport = require('passport');
 
 const isLoggedIn = (req,res,next) => {
   req.user ? next() : res.sendStatus(401); //es un middleware, si tengo user pasa al siguiente, sino manda un 401 (unauthorized)
 }
 
 const loginSuccess = (req, res) => { 
-  res.send('Hello!');
+  const userData = req.user
+  res.redirect(301, process.env.CLIENT_URL + `/googleAuthAux?userData=${encodeURIComponent(JSON.stringify(userData))}`);
 };
+
 
 const loginFailure = (req, res) => {
   res.send('login failed')
