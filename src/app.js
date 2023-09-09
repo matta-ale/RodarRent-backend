@@ -11,37 +11,40 @@ const locationsRouter = require("./routes/locations/locationsRouter.js");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
 const cors = require("cors");
-const passportSetup = require("../passport.js");
+const session = require('express-session')
 // aqui puse lo nuevo
 const mercadoPagoRouter = require("./routes/mercadoPagoRouter");
 
 const server = express();
 server.name = "API";
 
+server.use(session({secret: 'dogs'}))
+server.use(passport.initialize())
+server.use(passport.session())
+
+require('../auth') //ejecuta todo lo de auth.js
+
 server.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 server.use(bodyParser.json({ limit: "50mb" }));
-server.use(
-  cookieSession({
-    name: "session",
-    keys: ["cyberwolve"],
-    maxAge: 24 * 60 * 60 * 100,
-  })
-);
-server.use(cookieParser());
-server.use(passport.initialize());
-server.use(passport.session());
+
+// server.use(cookieSession({
+//   name: 'session',
+//   keys: ['cyberwolve'],
+//   maxAge: 24*60*60*100,
+// }));
+
 server.use(
   cors({
-    origin: "http://127.0.0.1:5173",
-    methods: "GET,POST,PUT,DELETE",
-    credentials: true,
+    origin: process.env.CLIENT_URL,
+    methods: 'GET,POST,PUT,DELETE',
+    credentials:true,
   })
 );
 server.use(morgan("dev"));
 
 server.use((req, res, next) => {
-  // res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // update to match the domain you will make the request from
-  res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+  res.header('Access-Control-Allow-Origin', process.env.CLIENT_URL); // update to match the domain you will make the request from
+  //res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
   res.header("Access-Control-Allow-Credentials", "true");
   res.header(
     "Access-Control-Allow-Headers",
