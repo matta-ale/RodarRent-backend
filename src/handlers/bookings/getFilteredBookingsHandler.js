@@ -5,6 +5,7 @@ const CustomError = require("../../utils/customError");
 const getFilteredBookingsHandler = async (data, res) => {
   try {
     const {
+      CustomerId,
       stateBooking,
       startDate,
       finishDate,
@@ -18,6 +19,9 @@ const getFilteredBookingsHandler = async (data, res) => {
     //deberiamos agregar desde algun lado el id del usuario para poder agregarlo a filter Conditions
     const filterConditions = [];
 
+    if (CustomerId) {
+      filterConditions.push({ CustomerId: CustomerId });
+    }
     if (stateBooking) {
       filterConditions.push({ stateBooking: stateBooking });
     }
