@@ -1,41 +1,54 @@
-const mercadopago = require("mercadopago");
-require("dotenv").config();
+/* eslint-disable object-shorthand */
+const mercadopago = require('mercadopago');
+require('dotenv').config();
+const { Booking } = require('../db');
 
 const createOrder = async (req, res) => {
-  const access_token = process.env.ACCESS_TOKEN;
-  mercadopago.configure({
-    access_token: access_token,
-  });
-  const product = req.body.product;
+  const { ACCESS_TOKEN } = process.env;
 
-  const back_urls = {
-    success: "http://localhost:3001/success",
-    failure: "http://localhost:3001/failure",
-    pending: "http://localhost:3001/pending",
+  mercadopago.configure({
+    access_token: ACCESS_TOKEN,
+  });
+  // const { product } = req.body;
+
+  const backUrls = {
+    success: 'http://localhost:3001/success',
+    failure: 'http://localhost:3001/failure',
+    pending: 'http://localhost:3001/pending',
   };
-  const notification_url = "https://27d2-190-178-64-139.ngrok.io/webhook";
+  const notificationUrl =
+    'https://5dab-2800-e2-a200-192-a050-3edf-9f4b-c874.ngrok-free.app/webhook';
+
   const preference = {
     items: [
       {
-        //id: id de la reserva
-        //category_id: ver en MP
-        //description: alguna descripcion de la reserva
-        title: "rent Car test",
+        id: '95765850-8b11-4098-a021-e9633f9c6106', // es el id de la reserva
+        title: 'rent Car test', // el nombre para el servicio del alquiler del auto
         quantity: 1,
-        currency_id: "ARS",
-        unit_price: 500,
+        currency_id: 'ARS',
+        unit_price: 1500,
       },
     ],
-    back_urls: back_urls,
-    notification_url: notification_url,
+    back_urls: backUrls,
+    notification_url: notificationUrl,
   };
+
   try {
+    const booking = await Booking.findOne({
+      where: { id: '95765850-8b11-4098-a021-e9633f9c6106', PayId: null },
+    }); // cambiar id por valor dinámico
+
+    if (!booking) {
+      throw Error(
+        'It is not possible to create the payment for this reservation. The reservation already has an associated payment',
+      );
+    }
     const response = await mercadopago.preferences.create(preference);
-    console.log(response.body.items);
+    // console.log(response.body.items);
     const payLink = response.body.init_point;
     res.send(`<a href=${payLink}>Ir a Pagar</a>`);
   } catch (error) {
-    res.status(500).json({ error: "Error generating payment link" });
+    res.status(500).json({ error: error.message });
   }
 };
 
