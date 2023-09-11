@@ -11,17 +11,17 @@ const createOrder = async (req, res) => {
   });
   // const { product } = req.body;
   const product = {
-    id: 'caec72e6-7e05-4567-a9e7-164f94c18e16',
+    id: '11f0845e-b82c-440b-bf37-55ffb587c821',
     title: 'rent Car test', // el nombre para el servicio del alquiler del auto
-    quantity: 1,
+    quantity: 7,
     currency_id: 'ARS',
-    unit_price: 900,
+    unit_price: 200,
   };
 
   const backUrls = {
-    success: 'http://localhost:3001/success',
-    failure: 'http://localhost:3001/failure',
-    pending: 'http://localhost:3001/pending',
+    success: `${MP_URL}/success`,
+    failure: `${MP_URL}/failure`,
+    pending: `${MP_URL}/pending`,
   };
   const notificationUrl = `${MP_URL}/webhook`;
 
