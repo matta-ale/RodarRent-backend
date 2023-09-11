@@ -1,6 +1,7 @@
 const { Vehicle, Booking } = require('../../db');
 const { Op } = require('sequelize');
 const CustomError = require('../../utils/customError');
+const getAvailableVehiclesHandler = require('./getAvailableVehiclesHandler');
 
 const getVehicleAvailabilityByIdHandler = async ({ id, startDate, finishDate }) => {
     try {
@@ -43,9 +44,22 @@ const getVehicleAvailabilityByIdHandler = async ({ id, startDate, finishDate }) 
             from: startDate, 
             to: finishDate }
         }
+
+        // if car not available look for identicall available option
+        const suggestedOption = await getAvailableVehiclesHandler({
+            brand: vehicle.brand,
+            model: vehicle.model,
+            startDate,
+            finishDate,
+            order: 'year',
+            direction: 'DESC',
+        })
+        //////////////////////
+
         return {
             state: 'Not Available - Rented',
-            matchingReservations: thisVehicleMatchingBookings
+            matchingReservations: thisVehicleMatchingBookings,
+            suggestedReplacement: suggestedOption.length ? suggestedOption.at(0).id : 'No vehicles of the same brand/model available on required dates',
         }
 
     } catch (error) {
