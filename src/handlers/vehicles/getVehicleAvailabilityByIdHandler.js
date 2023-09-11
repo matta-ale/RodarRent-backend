@@ -14,8 +14,14 @@ const getVehicleAvailabilityByIdHandler = async ({ id, startDate, finishDate }) 
         }
         //////////////////////////
 
+        // validate Vehicle
+        const vehicle = await Vehicle.findByPk(id)
+        if (!vehicle) { throw new CustomError(`There's no vehicle matching id: ${id}`, 404) }
+        if (!vehicle.isActive) { throw new CustomError(`Vehicle ${id} has been deleted`) }
+        ///////////////////////////
+
         // make query for Bookings intersecting the desired period defined by startDate and finishDate ///
-        const busy = await Booking.findAll({
+        const thisVehicleMatchingBookings = await Booking.findAll({
             where: {
                 stateBooking: {
                     [Op.ne]: 'canceled'
@@ -25,11 +31,22 @@ const getVehicleAvailabilityByIdHandler = async ({ id, startDate, finishDate }) 
                 },
                 finishDate: {
                     [Op.gte]: new Date(startDate)
-                }
+                },
+                VehicleId: id,
             },
-            attributes: ['VehicleId'],
+            attributes: ['id', 'startDate', 'finishDate','stateBooking', 'VehicleId'],
         })
         /////////////////////////////
+
+        if (!thisVehicleMatchingBookings.length) { 
+            return { state: 'Available', 
+            from: startDate, 
+            to: finishDate }
+        }
+        return {
+            state: 'Not Available - Rented',
+            matchingReservations: thisVehicleMatchingBookings
+        }
 
     } catch (error) {
         throw CustomError(error.message, 500)
