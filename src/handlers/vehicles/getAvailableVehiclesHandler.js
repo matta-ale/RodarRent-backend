@@ -61,7 +61,7 @@ const getAvailableVehiclesHandler = async (query) => {
         const where = {
             isActive: true
         }
-        if (busyCars.length) { where.domain = { [Op.notIn]: busyCars } }
+        if (busyCars.length) { where.id = { [Op.notIn]: busyCars } }
         if (type) { where.type = type }
         if (transmission) { where.transmission = transmission }
         if (brand) { where.brand = brand }
@@ -113,7 +113,7 @@ const getAvailableVehiclesHandler = async (query) => {
         // filter results so that's there is only one Vehicle of each (model => transmission => fuel => price) combination ////
         const oneOfEachType = []
         availableVehicles.forEach(availableCar => {
-            const { domain, brand, model, type, passengers, transmission, fuel, pricePerDay, image } = availableCar
+            const { brand, model, type, passengers, transmission, fuel, pricePerDay, image } = availableCar
             const alreadyIn = oneOfEachType.filter(car => { 
                 return (car.brand === brand && car.model === model && car.transmission === transmission && car.fuel === fuel && car.pricePerDay === pricePerDay)
             })
