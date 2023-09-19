@@ -27,19 +27,18 @@ const getAvailableVehiclesHandler = async (query) => {
         } = query 
 
         let busyCars = []
-
+        
         if (startDate && finishDate) {
             // validate dates
             if (!startDate || !finishDate) {
                 throw new CustomError('startDate and finishDate are required query parameters', 400)
             }
-    
             const regexPatternForDates = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/
             if (!regexPatternForDates.test(startDate) || !regexPatternForDates.test(finishDate)) {
                 throw new CustomError('startDate and finishDate must be in the format AAAA-MM-DD', 400)
             }
             /////////////
-
+            
             // make query for Bookings intersecting the desired period defined by startDate and finishDate ///
             const busy = await Booking.findAll({
                 where: {
@@ -105,28 +104,45 @@ const getAvailableVehiclesHandler = async (query) => {
         ////////////////////
         
         // setup include to match pickUpLocationId ////
-        const include = pickUpLocationId ? {
-            model: Booking,
-            attributes: ['id', 'startDate', 'finishDate', 'pickUpLocationId', 'returnLocationId', 'stateBooking'],
-            where: {
-                stateBooking: {
-                    [Op.ne]: 'canceled'
+        const include = pickUpLocationId ? [
+            // {
+            //     model: Booking,
+            //     where: {
+            //         stateBooking: {
+            //             [Op.ne]: 'canceled'
+            //         },
+            //         startDate: { 
+            //             [Op.gt]: new Date(finishDate) 
+            //         }, 
+            //     },
+            //     order: [['startDate', 'ASC']],
+            //     attributes: ['id', 'startDate', 'finishDate', 'pickUpLocationId', 'returnLocationId', 'stateBooking'],
+            //     limit: 1,
+            //     separate: true,
+            //     required: false,  
+            // }, 
+            {
+                model: Booking,
+                where: {
+                    stateBooking: {
+                        [Op.ne]: 'canceled'
+                    },
+                    finishDate: { 
+                        [Op.lt]: new Date(startDate) 
+                    }, 
                 },
-                finishDate: { 
-                    [Op.lte]: new Date(startDate) 
-                }, 
-            },
-            order: [
-                ['finishDate', 'DESC']
-            ],
-            limit: 1,
-            separate: true, // this makes separate querys for vehicle, slower but allows for order Bookings properly   
-        } : undefined
+                order: [['finishDate', 'DESC']],
+                attributes: ['id', 'startDate', 'finishDate', 'pickUpLocationId', 'returnLocationId', 'stateBooking'],
+                limit: 1,
+                separate: true,
+                required: false 
+            }
+        ] : undefined
         //////////////////////
         
         // make query for Vehicles that match filter criteria and are not in busyCars array
         const availableVehicles = await Vehicle.findAll({
-            include, // NEW
+            include,
             where,
             order,
             attributes: ['id', 'domain', 'brand', 'model', 'type', 'passengers', 'transmission', 'fuel', 'pricePerDay', 'image', 'LocationId']
