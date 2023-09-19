@@ -21,7 +21,7 @@ const getVehiclesHandler = async (query) => {
         } = query 
 
         // setup where for database query ////////
-        const where = {}
+        const where = { isActive: true }
         if (id) { where.id = id }
         if (type) { where.type = type }
         if (transmission) { where.transmission = transmission }
