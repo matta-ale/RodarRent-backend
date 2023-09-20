@@ -21,7 +21,7 @@ const getVehiclesHandler = async (query) => {
         } = query 
 
         // setup where for database query ////////
-        const where = {}
+        const where = { isActive: true }
         if (id) { where.id = id }
         if (type) { where.type = type }
         if (transmission) { where.transmission = transmission }
@@ -66,7 +66,7 @@ const getVehiclesHandler = async (query) => {
         const results = await Vehicle.findAll({
             where,
             order,
-            attributes: ['id', 'domain', 'brand', 'model', 'type', 'passengers', 'transmission', 'fuel', 'pricePerDay', 'image', 'isActive']
+            attributes: ['id', 'domain', 'brand', 'model', 'type', 'passengers', 'transmission', 'fuel', 'pricePerDay', 'image', 'LocationId', 'isActive']
         })
         ///////////////////
 

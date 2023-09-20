@@ -15,6 +15,7 @@ const session = require('express-session');
 // aqui puse lo nuevo
 const mercadoPagoRouter = require('./routes/mercadoPagoRouter');
 const sendEmailRouter = require('./routes/sendEmailRouter');
+const reviewsRouter = require('./routes/review/reviewsRouter');
 
 const server = express();
 server.name = 'API';
@@ -55,15 +56,15 @@ server.use((req, res, next) => {
   next();
 });
 
-//server.use('/', routes);
 server.use('/', paymentsRouter);
 server.use('/', customersRouter);
 server.use('/', vehiclesRouter);
 server.use('/', bookingsRouter);
 server.use('/', locationsRouter);
-//aca puse otra cosa nueva
 server.use('/', mercadoPagoRouter);
 server.use('/', sendEmailRouter);
+server.use('/', reviewsRouter);
+
 // Error catching endware.
 server.use((err, req, res, next) => {
   // eslint-disable-line no-unused-vars
