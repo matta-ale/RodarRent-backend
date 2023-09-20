@@ -157,6 +157,7 @@ const getAvailableVehiclesHandler = async (query) => {
                 return veh.Bookings[0].returnLocationId === pickUpLocationId
             }
         }) : availableVehicles
+        ////////////////////////////////
 
         // filter results so that's there is only one Vehicle of each (model => transmission => fuel => price) combination ////
         const oneOfEachType = []
@@ -171,6 +172,7 @@ const getAvailableVehiclesHandler = async (query) => {
         })
         const results = oneOfEachType;
         ////////////////////////
+        //const results = availableVehicles
 
         // set pagination variables //////////
         if (limit) { 
