@@ -248,7 +248,7 @@ const loadCars = async (nCars) => {
     }
 }
 // execution of load(nCars)
-loadCars(50)
+loadCars(80)
 ////////////
 
 //module.exports = loadCars;

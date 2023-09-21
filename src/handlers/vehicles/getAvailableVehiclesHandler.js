@@ -57,8 +57,8 @@ const getAvailableVehiclesHandler = async (query) => {
             /////////////////////////////
             busyCars = busy.map(item => item.VehicleId).filter(item => item !== null)
             
-            // addScope for Vehicles with next Booking
-            Vehicle.addScope('nextBooking', {
+            // get allVehicles with  their next Booking
+            const vehNextBook = await Vehicle.findAll({
                 include: {
                     model: Booking,
                     where: {
@@ -77,9 +77,6 @@ const getAvailableVehiclesHandler = async (query) => {
                 }
             })
             ///////////////////////
-            // get allVehicles with  their next Booking
-            const vehNextBook = await Vehicle.scope('nextBooking').findAll()
-            //////////////////////
             // filter the ones wich next Booking starts at different location this one ends
             const badNextBookingIds = vehNextBook
             .filter(veh => veh.Bookings.length && veh.Bookings[0].pickUpLocationId !== returnLocationId)
