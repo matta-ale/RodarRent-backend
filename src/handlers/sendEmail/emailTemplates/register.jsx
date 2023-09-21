@@ -7,10 +7,6 @@ const { Head } = require("@react-email/head");
 const { Heading } = require("@react-email/heading");
 const { Section } = require("@react-email/section");
 const { Preview } = require("@react-email/preview");
-<<<<<<< HEAD
-const { Font } = require("@react-email/font");
-=======
->>>>>>> origin/backend-development
 const React = require("react");
 
 export function Register(props) {
@@ -18,11 +14,7 @@ export function Register(props) {
   return (
     <Html>
       <Head></Head>
-<<<<<<< HEAD
-      <Preview>text</Preview>
-=======
       <Preview>Welcome to Rodarrent, your go-to destination for hassle-free car rentals!</Preview>
->>>>>>> origin/backend-development
       <Tailwind>
         <Body className="bg-white my-auto mx-auto font-sans">
           <Container className="border border-solid border-gray-700 rounded my-[40px] mx-auto p-[20px] w-[800px]">
@@ -97,8 +89,4 @@ export function Register(props) {
       </Tailwind>
     </Html>
   );
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> origin/backend-development
