@@ -5,12 +5,13 @@ const CustomError = require('../../utils/customError');
 const { render } = require('@react-email/render');
 const { Normal } = require('./emailTemplates/normal');
 const { ResetPassword } = require('./emailTemplates/resetPassword');
+const { Register } = require('./emailTemplates/register');
 
 dotenv.config();
 
 const sendEmailHandler = async (data) => {
-  const { fromName, toEmailAddress, subject, text, template, replyToEmailAddress } = data;
-
+  const { userName, toEmailAddress, subject, text, template, replyToEmailAddress } = data;
+  console.log('1');
   const transporter = nodemailer.createTransport({
     host: 'smtp-mail.outlook.com',
     port: 587,
@@ -23,10 +24,14 @@ const sendEmailHandler = async (data) => {
   let emailhtml;
   switch (template) {
     case 'normal':
-      emailHtml = render(Normal({ text, subject, fromName }));
+      emailHtml = render(Normal({ text, subject, userName }));
       break;
     case 'resetPassword':
-      emailHtml = render(ResetPassword({ text, subject, fromName }));
+      emailHtml = render(ResetPassword({ text, subject, userName }));
+      break;
+    case 'register':
+      console.log('2');
+      emailHtml = render(Register({ userName }));
       break;
     default:
       emailHtml = render(Normal({ text, subject }));

@@ -11,7 +11,7 @@ const { Heading } = require('@react-email/heading');
 
 
 export function Normal (props) {
-  const {fromName, text,subject} = props
+  const {userName, text,subject} = props
   return (
     <Html>
       <Head />
@@ -26,7 +26,7 @@ export function Normal (props) {
               ></Img>
             </Section>
             <Section className="my-2">
-              <Heading className="text-xl pt-4">{subject} - {fromName}</Heading>
+              <Heading className="text-xl pt-4">{subject} - {userName}</Heading>
             </Section>
             <Section className="text-left">
               <text className="text-left text-md">
