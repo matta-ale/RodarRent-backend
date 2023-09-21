@@ -1,6 +1,7 @@
 const passport = require('passport'); //tutorial: https://www.youtube.com/watch?v=Q0a0594tOrc
 const { Customer } = require('./src/db');
 const GoogleStrategy = require('passport-google-oauth2').Strategy;
+const axios = require('axios')
 
 passport.use(
   new GoogleStrategy(
@@ -27,8 +28,17 @@ passport.use(
             password: 'google-auth',
           },
         });
-
-        console.log('llegó');
+        
+        if(created) {
+          const body = {
+            userName: profile.given_name, 
+            toEmailAddress: profile.email, 
+            replyToEmailAddress: 'rodarrent@outlook.com',
+            subject: `Welcome ${profile.given_name}`, 
+            template: 'register',
+          };
+          await axios.post(`${process.env.BACKEND_URL}/sendemail`,body)
+        }
         return done(null, user);
       } catch (err) {
         return done(err, null);
