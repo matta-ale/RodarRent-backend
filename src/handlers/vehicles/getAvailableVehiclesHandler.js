@@ -56,6 +56,35 @@ const getAvailableVehiclesHandler = async (query) => {
             })
             /////////////////////////////
             busyCars = busy.map(item => item.VehicleId).filter(item => item !== null)
+            
+            // get allVehicles with  their next Booking
+            const vehNextBook = await Vehicle.findAll({
+                include: {
+                    model: Booking,
+                    where: {
+                        stateBooking: {
+                            [Op.ne]: 'canceled'
+                        },
+                        startDate: { 
+                            [Op.gt]: new Date(finishDate) 
+                        }, 
+                    },
+                    order: [['startDate', 'ASC']],
+                    attributes: ['id', 'startDate', 'finishDate', 'pickUpLocationId', 'returnLocationId', 'stateBooking'],
+                    limit: 1,
+                    separate: true,
+                    required: false,  
+                }
+            })
+            ///////////////////////
+            // filter the ones wich next Booking starts at different location this one ends
+            const badNextBookingIds = vehNextBook
+            .filter(veh => veh.Bookings.length && veh.Bookings[0].pickUpLocationId !== returnLocationId)
+            .map(veh => veh.id)
+            /////////////////////
+            // include them along with busyCars
+            busyCars = [...busyCars, ...badNextBookingIds]
+            ////////////////////
         }
 
         // setup where for database query ////////
@@ -98,29 +127,14 @@ const getAvailableVehiclesHandler = async (query) => {
             }
         }
         ////////////////
-
+        
         // setup order for database query ////
         const order = [[(orderBy) ? orderBy : 'pricePerDay', (direction) ? direction : 'DESC']]
         ////////////////////
+
         
-        // setup include to match pickUpLocationId ////
-        const include = pickUpLocationId ? [
-            // {
-            //     model: Booking,
-            //     where: {
-            //         stateBooking: {
-            //             [Op.ne]: 'canceled'
-            //         },
-            //         startDate: { 
-            //             [Op.gt]: new Date(finishDate) 
-            //         }, 
-            //     },
-            //     order: [['startDate', 'ASC']],
-            //     attributes: ['id', 'startDate', 'finishDate', 'pickUpLocationId', 'returnLocationId', 'stateBooking'],
-            //     limit: 1,
-            //     separate: true,
-            //     required: false,  
-            // }, 
+        // setup include for previous Booking if there is a pickUpLocationId////
+        const include = pickUpLocationId ? [ 
             {
                 model: Booking,
                 where: {
@@ -157,6 +171,7 @@ const getAvailableVehiclesHandler = async (query) => {
                 return veh.Bookings[0].returnLocationId === pickUpLocationId
             }
         }) : availableVehicles
+        ////////////////////////////////
 
         // filter results so that's there is only one Vehicle of each (model => transmission => fuel => price) combination ////
         const oneOfEachType = []
@@ -171,6 +186,7 @@ const getAvailableVehiclesHandler = async (query) => {
         })
         const results = oneOfEachType;
         ////////////////////////
+        //const results = availableVehicles
 
         // set pagination variables //////////
         if (limit) { 
