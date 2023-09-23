@@ -7,8 +7,8 @@ const {
   updateBooking,
   deleteBooking,
   getFilteredBookings,
-
   cancelBooking,
+  getBookingsSummary,
 } = require("../../controllers/bookings");
 
 const postBookingValidate = require("../../middlewares/bookings/postBookingValidate");
@@ -24,6 +24,7 @@ router.get("/hc", (req, res) => {
 router.post("/bookings", postBookingValidate, createBooking);
 router.get("/bookings", getAllBookings);
 router.get("/booking/filter", getFilteredBookings);
+router.get("/booking/summary", getBookingsSummary);
 router.get("/booking/income", getIncomeBookings);
 router.get("/bookings/:id", getBookingById);
 router.put("/bookings/:id", updateBooking);
