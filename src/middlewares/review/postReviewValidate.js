@@ -7,15 +7,19 @@ const postReviewValidate = async (req, res, next) => {
   if (!rating) return res.status(404).json({ error: 'Missing rating' });
   if (!review) return res.status(404).json({ error: 'Missing review' });
 
-  const booking = await Booking.findOne({ where: { CustomerId } });
+  const bookings = await Booking.findAll({ where: { CustomerId } });
 
-  if (!booking) {
+  if (!bookings || bookings.length === 0) {
     return res
       .status(400)
       .json({ error: 'No booking found for this customer' });
   }
 
-  if (booking.stateBooking !== 'completed') {
+  const completedBooking = bookings.find(
+    (booking) => booking.stateBooking === 'completed',
+  );
+
+  if (!completedBooking) {
     return res
       .status(400)
       .json({ error: 'You need a completed booking to post a review' });
