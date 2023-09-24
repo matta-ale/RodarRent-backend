@@ -9,6 +9,8 @@ const {
   getFilteredBookings,
   cancelBooking,
   getBookingsSummary,
+  getHistoryBookings,
+  getFutureBookings,
 } = require("../../controllers/bookings");
 
 const postBookingValidate = require("../../middlewares/bookings/postBookingValidate");
@@ -26,10 +28,11 @@ router.get("/bookings", getAllBookings);
 router.get("/booking/filter", getFilteredBookings);
 router.get("/booking/summary", getBookingsSummary);
 router.get("/booking/income", getIncomeBookings);
+router.get("/booking/history", getHistoryBookings);
+router.get("/booking/future", getFutureBookings);
 router.get("/bookings/:id", getBookingById);
 router.put("/bookings/:id", updateBooking);
 router.put("/bookings/cancel/:id", cancelBooking);
-
 router.delete("/bookings/:id", deleteBookingValidation, deleteBooking);
 
 module.exports = router;
