@@ -7,6 +7,7 @@ const getFilteredBookings = require("./getFilteredBookings");
 const cancelBooking = require("./cancelBooking");
 const getBookingsSummary = require("./getBookingsSummary");
 const getHistoryBookings = require("./getHistoryBookings");
+const getFutureBookings = require("./getFutureBookings");
 
 module.exports = {
   createBooking,
@@ -18,4 +19,5 @@ module.exports = {
   cancelBooking,
   getBookingsSummary,
   getHistoryBookings,
+  getFutureBookings,
 };
