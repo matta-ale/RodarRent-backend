@@ -34,7 +34,7 @@ passport.use(
             name: profile.given_name,
             lastName: profile.family_name,
             personalId: profile.id,
-            birthDate: 'n/a',
+            birthDate: '2000-04-10',
             address: 'n/a',
             city: 'n/a',
             country: 'n/a',
