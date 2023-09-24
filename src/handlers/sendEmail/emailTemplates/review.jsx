@@ -94,4 +94,4 @@ const Review = (props) => {
   );
 };
 
-module.exports = Review;
+module.exports = {Review};
