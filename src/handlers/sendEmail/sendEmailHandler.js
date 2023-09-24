@@ -7,6 +7,7 @@ const { Normal } = require('./emailTemplates/normal');
 const { ResetPassword } = require('./emailTemplates/resetPassword');
 const { Register } = require('./emailTemplates/register');
 const { Review } = require('./emailTemplates/review');
+const { BookingConfirmation } = require('./emailTemplates/bookingConfirmation');
 
 dotenv.config();
 
@@ -35,6 +36,12 @@ const sendEmailHandler = async (data) => {
       break;
     case 'review':
       emailHtml = render(Review(data));
+      break;
+    case 'bookingConfirmation':
+      emailHtml = render(BookingConfirmation(data));
+      break;
+    case 'bookingCancelation':
+      emailHtml = render(BookingCancelation(data));
       break;
     default:
       emailHtml = render(Normal(data));
