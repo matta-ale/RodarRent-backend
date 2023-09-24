@@ -11,8 +11,8 @@ conn.sync({ force: false, alter: false }).then(async () => {
     performHealthCheck();
     sendEmailsToCustomers();
     setInterval(performHealthCheck, 60000);
+    setInterval(sendEmailsToCustomers, 24 * 60 * 60 * 1000);
   });
-  setInterval(sendEmailsToCustomers, 24 * 60 * 60 * 1000);
 });
 
 //sync es una promesa, en el then levanto el server
