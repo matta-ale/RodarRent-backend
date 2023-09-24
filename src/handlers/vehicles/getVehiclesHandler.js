@@ -93,8 +93,8 @@ const getVehiclesHandler = async (query) => {
         let nextString = '/vehicles?'
         let prevString = '/vehicles?'
         for (let prop in query) {
-            if (nextString.at(-1) !== '?') { nextString += '&' }
-            if (prevString.at(-1) !== '?') { prevString += '&' }
+            if (nextString[nextString.length -1] !== '?') { nextString += '&' }
+            if (prevString[prevString.length -1] !== '?') { prevString += '&' }
             if (prop === 'offset') {
                 nextString += `offset=${showTo}`
                 prevString += `offset=${showFrom-limit}`
@@ -111,6 +111,7 @@ const getVehiclesHandler = async (query) => {
         // available option filters
         const brands = Array.from(new Set(results.map(car => car.brand)));
         const models = Array.from(new Set(results.map(car => car.model)));
+        const types = Array.from(new Set(results.map(car => car.type))); 
         const transmissions = Array.from(new Set(results.map(car => car.transmission)));
         const fuelTypes = Array.from(new Set(results.map(car => car.fuel)));
         const passengers = Array.from(new Set(results.map(car => car.passengers))).sort();
@@ -124,7 +125,7 @@ const getVehiclesHandler = async (query) => {
             prev,
             resultsCount: results.length,
             results: results.slice(showFrom, showTo),
-            availableFilterOptions: { brands, models, transmissions, fuelTypes, passengers }
+            availableFilterOptions: { brands, models, types, transmissions, fuelTypes, passengers }
         }
 
         return response
