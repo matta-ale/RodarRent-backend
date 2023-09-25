@@ -12,7 +12,7 @@ const { Row } = require("@react-email/row");
 const { Button } = require("@react-email/button");
 const React = require("react");
 
-const BookingConfirmation = (props) => {
+const BookingCancelation = (props) => {
   const {
     bookingId,
     startDate,
@@ -25,7 +25,7 @@ const BookingConfirmation = (props) => {
   return (
     <Html>
       <Head></Head>
-      <Preview>Your booking has been confirmed</Preview>
+      <Preview>Your booking has been canceled</Preview>
       <Tailwind>
         <Body className="bg-white my-auto mx-auto font-sans">
           <Container className="border border-solid border-gray-300 rounded my-[40px] mx-auto p-[20px]">
@@ -36,7 +36,7 @@ const BookingConfirmation = (props) => {
               ></Img>
             </Section>
             <Section className="my-2">
-              <Heading className="text-2xl pt-4">Booking Confirmation</Heading>
+              <Heading className="text-2xl pt-4">Booking Cancelation</Heading>
               <Container className="text-justify leading-7 px-4">
                 <Container className="p-2 bg-gray-300 rounded-md my-2 text-center w-[40ch]">
                   <text className="text-sm text-black">Booking code: </text>
@@ -56,9 +56,9 @@ const BookingConfirmation = (props) => {
                       <br></br>
                       <text>Type: {vehicle.type}</text>
                       <br></br>
-                      <text>Transmission: {vehicle.transmission}</text>
+                      <text>Transmission: {vehicle.transmition}</text>
                       <br></br>
-                      <text>Fuel type: {vehicle.fuel}</text>
+                      <text>Fuel type: {vehicle.fuelType}</text>
                       <br></br>
                       <br></br>
                     </Container>
@@ -69,17 +69,17 @@ const BookingConfirmation = (props) => {
                     <text className="font-bold">Pick Up: </text>
                     <text className="ml-10">{startDate}</text>
                     <br></br>
-                    <text>{pickUpLocation.alias}</text>
+                    <text>{pickUpLocation.name}</text>
                     <br></br>
                     <text>{pickUpLocation.address}</text>
                     <br></br>
                     <text>City: {pickUpLocation.city}</text>
                     <br></br>
                     <br></br>
-                    <text className="font-bold">Return: </text>
+                    <text className="font-bold">Return:</text>
                     <text className="ml-10">{finishDate}</text>
                     <br></br>
-                    <text>{returnLocation.alias}</text>
+                    <text>{returnLocation.name}</text>
                     <br></br>
                     <text>{returnLocation.address}</text>
                     <br></br>
@@ -87,7 +87,7 @@ const BookingConfirmation = (props) => {
                     <br></br>
                   </Column>
                   <Column className="w-[50%]">
-                    <text>First Name: {customer.name}</text>
+                    <text>First Name: {customer.firstName}</text>
                     <br></br>
                     <text>Last Name: {customer.lastName}</text>
                     <br></br>
@@ -101,7 +101,7 @@ const BookingConfirmation = (props) => {
                     </text>
                     <br></br>
                     <Button
-                      href={`http://127.0.0.1:5173/customer/${customer.id}`}
+                      href=""
                       className="p-2 w-[150px] rounded bg-blue-400 text-center text-white font-semibold my-3"
                     >
                       My Profile
@@ -129,4 +129,4 @@ const BookingConfirmation = (props) => {
   );
 };
 
-module.exports = {BookingConfirmation};
+module.exports = {BookingCancelation};
