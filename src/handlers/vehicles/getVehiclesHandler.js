@@ -1,5 +1,6 @@
 const { Vehicle } = require('../../db');
 const CustomError = require('../../utils/customError');
+const Sequelize = require('sequelize');
 
 const getVehiclesHandler = async (query) => {
     try {
@@ -116,6 +117,11 @@ const getVehiclesHandler = async (query) => {
         const fuelTypes = Array.from(new Set(results.map(car => car.fuel)));
         const passengers = Array.from(new Set(results.map(car => car.passengers))).sort();
         /////////////////////////
+        // images for each Model
+        const images = results.reduce((accum, current) => {
+            accum[current.model] = accum[current.model] ? Array.from(new Set([...accum[current.model], current.image])) : [current.image]
+            return accum;
+        }, {})
 
         // configure response /////////
         const response = {
@@ -125,7 +131,8 @@ const getVehiclesHandler = async (query) => {
             prev,
             resultsCount: results.length,
             results: results.slice(showFrom, showTo),
-            availableFilterOptions: { brands, models, types, transmissions, fuelTypes, passengers }
+            availableFilterOptions: { brands, models, types, transmissions, fuelTypes, passengers },
+            images
         }
 
         return response
