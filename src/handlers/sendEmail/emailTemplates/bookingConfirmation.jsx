@@ -79,7 +79,7 @@ const BookingConfirmation = (props) => {
                     <text className="font-bold">Return: </text>
                     <text className="ml-10">{finishDate}</text>
                     <br></br>
-                    <text>{returnLocation.name}</text>
+                    <text>{returnLocation.alias}</text>
                     <br></br>
                     <text>{returnLocation.address}</text>
                     <br></br>
