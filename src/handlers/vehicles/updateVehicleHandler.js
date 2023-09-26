@@ -11,7 +11,7 @@ const updateVehicleHandler = async (data) => {
             raw: true,
         });
         if (updated[0] === 0) {
-            throw new CustomError(`Can't update vehicle with domain ${id}`, 404);
+            throw new CustomError(`Can't update vehicle with id ${id}`, 404);
         } else {
             return `Vehicle with id ${id} succesfully updated`;
         }

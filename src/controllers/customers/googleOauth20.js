@@ -6,6 +6,7 @@ const isLoggedIn = (req,res,next) => {
 
 const loginSuccess = (req, res) => { 
   const userData = req.user
+  console.log(userData)
   res.redirect(301, process.env.CLIENT_URL + `/googleAuthAux?userData=${encodeURIComponent(JSON.stringify(userData))}`);
 };
 
@@ -16,14 +17,14 @@ const loginFailure = (req, res) => {
 
 const googleCallback =  passport.authenticate('google', {
   successRedirect: '/auth/success',
-  failureRedirect: '/auth/failure',
+  failureRedirect: '/auth/failure', 
 })
 
 const google = passport.authenticate("google",{scope:["email","profile"]})
 
 const logout = (req,res) => {
-    req.logout()
-    res.redirect(process.env.CLIENT_URL)
-  }
+  req.logout()
+  res.redirect(process.env.CLIENT_URL)
+}
 
 module.exports = {isLoggedIn,loginSuccess,loginFailure,googleCallback,google, logout}
