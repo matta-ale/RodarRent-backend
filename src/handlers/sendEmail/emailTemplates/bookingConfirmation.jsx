@@ -25,7 +25,7 @@ const BookingConfirmation = (props) => {
   return (
     <Html>
       <Head></Head>
-      <Preview>Your booking has been confirmed</Preview>
+      <Preview>Your booking has been confirmed 🏁🚗</Preview>
       <Tailwind>
         <Body className="bg-white my-auto mx-auto font-sans">
           <Container className="border border-solid border-gray-300 rounded my-[40px] mx-auto p-[20px]">
@@ -52,7 +52,9 @@ const BookingConfirmation = (props) => {
                   </Column>
                   <Column className="w-[50%]">
                     <Container className="mt-3">
-                      <text className="text-xl font-bold">{vehicle.brand} - {vehicle.model}</text>
+                      <text className="text-xl font-bold">
+                        {vehicle.brand} - {vehicle.model}
+                      </text>
                       <br></br>
                       <text>Type: {vehicle.type}</text>
                       <br></br>
@@ -129,4 +131,4 @@ const BookingConfirmation = (props) => {
   );
 };
 
-module.exports = {BookingConfirmation};
+module.exports = { BookingConfirmation };

@@ -19,13 +19,14 @@ const BookingCancelation = (props) => {
     finishDate,
     pickUpLocation,
     returnLocation,
-    vehicle,
     customer,
   } = props;
   return (
     <Html>
       <Head></Head>
-      <Preview>Your booking has been canceled</Preview>
+      <Preview>
+        Hi,👋 this is a booking cancelation confirmation from RodarRent🚗
+      </Preview>
       <Tailwind>
         <Body className="bg-white my-auto mx-auto font-sans">
           <Container className="border border-solid border-gray-300 rounded my-[40px] mx-auto p-[20px]">
@@ -38,38 +39,24 @@ const BookingCancelation = (props) => {
             <Section className="my-2">
               <Heading className="text-2xl pt-4">Booking Cancelation</Heading>
               <Container className="text-justify leading-7 px-4">
-                <Container className="p-2 bg-gray-300 rounded-md my-2 text-center w-[40ch]">
-                  <text className="text-sm text-black">Booking code: </text>
+                <Container className="p-2 bg-rose-200 rounded-md my-2 text-center w-[40ch] mb-4">
+                  <text className="text-sm text-black">Booking code :</text>
                   <br></br>
                   <text>{bookingId}</text>
                 </Container>
-                <Row className="w-[600px] bg-white rounded-2xl shadow-lg mt-4 px-3 py-2">
-                  <Column className="w-[50%]">
-                    <Img
-                      src="https://res.cloudinary.com/daiztctac/image/upload/v1694023585/mjjohf5x89gjx1e5vedp.webp"
-                      className="w-[300px] mr-10 align-bottom"
-                    ></Img>
-                  </Column>
-                  <Column className="w-[50%]">
-                    <Container className="mt-3">
-                      <text className="text-xl font-bold">{vehicle.brand} - {vehicle.model}</text>
-                      <br></br>
-                      <text>Type: {vehicle.type}</text>
-                      <br></br>
-                      <text>Transmission: {vehicle.transmition}</text>
-                      <br></br>
-                      <text>Fuel type: {vehicle.fuelType}</text>
-                      <br></br>
-                      <br></br>
-                    </Container>
-                  </Column>
+                <Row className="w-full text-justify">
+                  <text>
+                    The following reservation has been canceled by you. If it
+                    was not your intention to cancel this reservation please
+                    contact us and we will be happy to help you.
+                  </text>
                 </Row>
                 <Row className="mt-8 ml-6">
                   <Column className="w-[50%]">
-                    <text className="font-bold">Pick Up: </text>
+                    <text className="font-bold">Pick Up:</text>
                     <text className="ml-10">{startDate}</text>
                     <br></br>
-                    <text>{pickUpLocation.name}</text>
+                    <text>{pickUpLocation.alias}</text>
                     <br></br>
                     <text>{pickUpLocation.address}</text>
                     <br></br>
@@ -79,7 +66,7 @@ const BookingCancelation = (props) => {
                     <text className="font-bold">Return:</text>
                     <text className="ml-10">{finishDate}</text>
                     <br></br>
-                    <text>{returnLocation.name}</text>
+                    <text>{returnLocation.alias}</text>
                     <br></br>
                     <text>{returnLocation.address}</text>
                     <br></br>
@@ -91,33 +78,34 @@ const BookingCancelation = (props) => {
                     <br></br>
                     <text>Last Name: {customer.lastName}</text>
                     <br></br>
-                    <text>ID: {customer.personalId}</text>
+                    <text>ID: {customer.id}</text>
                     <br></br>
                     <text>Email: {customer.email}</text>
                     <br></br>
                     <br></br>
                     <text className="text-sm font-semibold">
-                      Do you want to edit this reservation?
+                      Do you want to keep this reservation?
                     </text>
                     <br></br>
-                    <Button
-                      href=""
-                      className="p-2 w-[150px] rounded bg-blue-400 text-center text-white font-semibold my-3"
-                    >
-                      My Profile
-                    </Button>
+                    <Container className="text-md font-semibold font-sans text-slate-500">
+                      <text>rodarrent@outlook.com</text>
+                      <br></br>
+                      <text>+54 9 11 4357559</text>
+                    </Container>
                   </Column>
                 </Row>
               </Container>
               <br></br>
               <hr></hr>
               <br></br>
-              <text>Safe travels,</text>
+              <text>Greetings,</text>
               <br></br>
               <br></br>
               <text>Bruno Sarti</text>
               <br></br>
-              <text className="text-sm">Chief Booking Mailing Officer</text>
+              <text className="text-sm">
+                CEO - Cancelations Empowered Operator
+              </text>
               <br></br>
               <text className="font-bold text-slate-500">Rodarrent</text>
             </Section>
@@ -129,4 +117,4 @@ const BookingCancelation = (props) => {
   );
 };
 
-module.exports = {BookingCancelation};
+module.exports = { BookingCancelation };
