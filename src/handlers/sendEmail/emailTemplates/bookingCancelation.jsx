@@ -88,7 +88,7 @@ const BookingCancelation = (props) => {
                     </text>
                     <br></br>
                     <Container className="text-md font-semibold font-sans text-slate-500">
-                      <text>rodarrent@outlook.com</text>
+                      <text>rodarrentadm@outlook.com</text>
                       <br></br>
                       <text>+54 9 11 4357559</text>
                     </Container>
