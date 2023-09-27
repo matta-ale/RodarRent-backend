@@ -17,7 +17,7 @@ function getColorForState(state) {
   }
 }
 
-const getBookingsSummaryHandler = async (data, res) => {
+const getBookingsSummaryHandler = async (req, res) => {
   try {
     const bookingSummary = await Booking.findAll({
       attributes: [
@@ -34,7 +34,7 @@ const getBookingsSummaryHandler = async (data, res) => {
       color: getColorForState(summary.stateBooking),
     }));
 
-    res.json(summaryWithColor);
+    return summaryWithColor;
   } catch (error) {
     console.error(error);
     res
