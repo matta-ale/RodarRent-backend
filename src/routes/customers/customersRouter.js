@@ -39,9 +39,9 @@ router.delete("/customers/:id",deleteCustomerByIdValidation,deleteCustomerById);
 
 //para google oauth20:
 
-router.get("/auth/success",isLoggedIn, loginSuccess)
+router.get("/auth/success", isLoggedIn, loginSuccess)
 router.get("/auth/failure", loginFailure)
-router.get("/google/callback",googleCallback)
+router.get("/google/callback/",googleCallback)
 router.get("/auth/google",google)
 router.get("/logout",logout)
 

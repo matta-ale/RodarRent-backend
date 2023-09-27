@@ -71,10 +71,9 @@ passport.use(
 
 
 passport.serializeUser(function (user, done) {
-  done(null, user);
+  done(null, user.email);
 });
 
-passport.deserializeUser(function (user, done) {
-  console.log('...deserialize gets executed...')
+passport.deserializeUser(async function (user, done) {
   done(null, user);
 });

@@ -1,15 +1,15 @@
-const React = require('react');
-const { Body } = require('@react-email/body');
-const { Html } = require('@react-email/html');
-const { Container } = require('@react-email/container');
-const { Tailwind } = require('@react-email/tailwind');
-const { Img } = require('@react-email/img');
-const { Head } = require('@react-email/head');
-const { Section } = require('@react-email/section');
-const { Preview } = require('@react-email/preview');
+const React = require("react");
+const { Body } = require("@react-email/body");
+const { Html } = require("@react-email/html");
+const { Container } = require("@react-email/container");
+const { Tailwind } = require("@react-email/tailwind");
+const { Img } = require("@react-email/img");
+const { Head } = require("@react-email/head");
+const { Section } = require("@react-email/section");
+const { Preview } = require("@react-email/preview");
 
-export function ResetPassword (props) {
-  const {userName, text} = props
+export function ResetPassword(props) {
+  const { userName, text } = props;
   return (
     <Html>
       <Head />
@@ -24,7 +24,9 @@ export function ResetPassword (props) {
               ></Img>
             </Section>
             <Section className="text-center">
-              <text className="text-left text-lg font-medium">Hi, {userName}.</text>
+              <text className="text-left text-lg font-medium">
+                Hi, {userName}.
+              </text>
               <br></br>
               <text className="text-center text-md">
                 This is an auto generated email, this is your new password for
@@ -58,4 +60,4 @@ export function ResetPassword (props) {
       </Tailwind>
     </Html>
   );
-};
+}
