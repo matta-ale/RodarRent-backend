@@ -1,6 +1,22 @@
 const { Booking } = require("../../db");
 const sequelize = require("sequelize");
 
+// Función para asignar colores basados en el estado
+function getColorForState(state) {
+  switch (state) {
+    case "confirmed":
+      return "verde";
+    case "canceled":
+      return "rojo";
+    case "completed":
+      return "azul";
+    case "pending":
+      return "amarillo";
+    default:
+      return "gris";
+  }
+}
+
 const getBookingsSummaryHandler = async (data, res) => {
   try {
     const bookingSummary = await Booking.findAll({
@@ -11,9 +27,14 @@ const getBookingsSummaryHandler = async (data, res) => {
       group: ["stateBooking"],
       raw: true,
     });
-    console.log(bookingSummary);
 
-    res.json(bookingSummary);
+    // Mapea los resultados y agrega la propiedad "color" a cada objeto
+    const summaryWithColor = bookingSummary.map((summary) => ({
+      ...summary,
+      color: getColorForState(summary.stateBooking),
+    }));
+
+    res.json(summaryWithColor);
   } catch (error) {
     console.error(error);
     res
