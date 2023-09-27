@@ -63,7 +63,7 @@ router.get("/success", async (req, res, next) => {
       toEmailAddress: pay.Booking.dataValues.Customer.email,
       subject: "Reservation Confirmed",
       template: "bookingConfirmation",
-      replyToEmailAddress: "rodarrent@outlook.com",
+      replyToEmailAddress: "rodarrentadm@outlook.com",
       userName: pay.Booking.dataValues.Customer.name,
       bookingId: pay.Booking.dataValues.id,
       startDate: pay.Booking.dataValues.startDate,
