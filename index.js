@@ -13,7 +13,7 @@ conn.sync({ force: false, alter: false }).then(async () => {
     //sendEmailsToCustomers();
     updateBookingStatus();
     setInterval(performHealthCheck, 60000);
-    setInterval(sendEmailsToCustomers, 24 * 60 * 60 * 1000);
+    //setInterval(sendEmailsToCustomers, 24 * 60 * 60 * 1000);
     setInterval(updateBookingStatus, 24 * 60 * 60 * 1000);
   });
 });

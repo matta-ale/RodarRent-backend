@@ -23,7 +23,7 @@ const sendEmailHandler = async (data) => {
       pass: process.env.NODEMAILER_EMAIL_PASSWORD,
     },
   });
-  let emailhtml;
+  let emailHtml;
   switch (template) {
     case 'normal':
       emailHtml = render(Normal(data));
