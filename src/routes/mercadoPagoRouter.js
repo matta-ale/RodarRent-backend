@@ -58,7 +58,8 @@ router.get("/success", async (req, res, next) => {
         id: pay.Booking.dataValues.returnLocationId,
       },
     });
-    console.log(returnLocation);
+
+    //console.log(returnLocation);
     const data = {
       toEmailAddress: pay.Booking.dataValues.Customer.email,
       subject: "Reservation Confirmed",
@@ -74,7 +75,7 @@ router.get("/success", async (req, res, next) => {
       customer: pay.Booking.dataValues.Customer,
     };
     //console.log(data);
-    //await axios.post(`${BACKEND_URL}/sendemail`, data);
+    await axios.post(`${BACKEND_URL}/sendemail`, data);
     res.redirect(`${CLIENT_URL}/customer/${pay.Booking.dataValues.CustomerId}`);
   } else if (pay) {
     next(
