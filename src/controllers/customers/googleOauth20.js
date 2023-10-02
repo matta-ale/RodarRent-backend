@@ -8,6 +8,7 @@ const isLoggedIn = (req,res,next) => {
 const loginSuccess = (req, res) => {
   console.log('...loggingSuccess gets executed...') 
   const userData = req.user
+  userData.date = new Date() 
   res.redirect(301, process.env.CLIENT_URL + `/googleAuthAux?userData=${encodeURIComponent(JSON.stringify(userData))}`);
 };
 
@@ -23,9 +24,28 @@ const googleCallback =  passport.authenticate('google', {
 
 const google = passport.authenticate("google",{scope:["email","profile"]})
 
-const logout = (req,res) => {
-  req.logout()
-  res.redirect(process.env.CLIENT_URL)
+// const logout = (req,res, next) => {
+//   req.logout(function(err) {
+//     if (err) { return next(err); }
+//     req.session.destroy()
+//     res.redirect(`${process.env.CLIENT_URL}/cars`)
+//   })
+// }
+
+const logout = (req, res, next) => {
+  // Log the user out
+  req.logout((err) => {
+    if (err) {
+      return next(err); // Handle any errors here
+    }
+    req.session.destroy((err) => {
+      if (err) {
+        return next(err); // Handle any errors here
+      }
+      res.clearCookie('connect.sid')
+      res.redirect(`${process.env.CLIENT_URL}/cars`);
+    });
+  });
 }
 
 module.exports = {isLoggedIn,loginSuccess,loginFailure,googleCallback,google, logout}

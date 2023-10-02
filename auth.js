@@ -60,10 +60,10 @@ passport.use(
       
       try {
         const user = await handleGoogleLogin(profile)
-        done(null, user);
+        return done(null, user);
 
       } catch (err) {
-        done(err, null);
+        return done(err, null);
       }
     }
   )
@@ -71,7 +71,7 @@ passport.use(
 
 
 passport.serializeUser(function (user, done) {
-  done(null, user.email);
+  done(null, user);
 });
 
 passport.deserializeUser(async function (user, done) {
