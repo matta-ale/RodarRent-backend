@@ -8,10 +8,12 @@ const customersRouter = require("./routes/customers/customersRouter.js");
 const vehiclesRouter = require("./routes/vehicles/vehiclesRouter.js");
 const bookingsRouter = require("./routes/bookings/bookingsRouter.js");
 const locationsRouter = require("./routes/locations/locationsRouter.js");
-const cookieSession = require("cookie-session");
+//const cookieSession = require("cookie-session");
 const passport = require("passport");
 const cors = require("cors");
 const session = require("express-session");
+const redis = require('redis');
+const RedisStore = require("connect-redis").default;
 // aqui puse lo nuevo
 const mercadoPagoRouter = require("./routes/mercadoPagoRouter");
 const sendEmailRouter = require("./routes/sendEmailRouter");
@@ -21,20 +23,33 @@ const usersRouter = require("../src/routes/users/usersRouter");
 const server = express();
 server.name = "API";
 
-server.use(
-  session({
-  secret: 'supersecretweirdkey', //use .env
-  resave: false,
-  saveUninitialized: false,
-  unset: 'destroy',
-  cookie: {
-    maxAge: 30000,
-    secure: false // or would require https
-  }, 
-})
-)
 
-//server.use(session({ secret: "dogs" }));
+// server.use(session({ 
+//   secret: "dogs",
+//   resave: "false",
+//   saveUninitialized: "false"
+//  }));
+
+// Redis session store
+
+const redisClient = redis.createClient({
+  url: process.env.EXTERNAL_REDIS_URL,
+});
+
+redisClient.connect().catch(console.error);
+
+let redisStore = new RedisStore({
+  client: redisClient,
+});
+
+server.use(session({
+  store: redisStore,
+  secret: 'dogs',
+  resave: false,
+  saveUninitialized: true,
+  })
+);
+
 server.use(passport.initialize());
 server.use(passport.session());
 
